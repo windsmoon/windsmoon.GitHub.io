@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="本篇文章还没有全部完成，只完成了一半，剩下一半还在编写概要本篇文章，是此博客的第一篇正式文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。">
+<meta name="description" content="本篇文章还没有全部完成，只完成了一半，剩下一半还在编写 概要本篇文章，是此博客的第一篇正式文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。">
 <meta name="keywords" content="Linked List， 算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="判断单向链表是否有环及求环入口的算法数学证明">
 <meta property="og:url" content="http://yoursite.com/2017/10/09/判断单向链表是否有环及求环入口的算法数学证明/index.html">
 <meta property="og:site_name" content="windsmoon 的游戏相关">
-<meta property="og:description" content="本篇文章还没有全部完成，只完成了一半，剩下一半还在编写概要本篇文章，是此博客的第一篇正式文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。">
+<meta property="og:description" content="本篇文章还没有全部完成，只完成了一半，剩下一半还在编写 概要本篇文章，是此博客的第一篇正式文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/WX20171010-230814@2x.png">
-<meta property="og:updated_time" content="2017-10-11T02:17:19.000Z">
+<meta property="og:updated_time" content="2017-10-11T02:22:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="判断单向链表是否有环及求环入口的算法数学证明">
-<meta name="twitter:description" content="本篇文章还没有全部完成，只完成了一半，剩下一半还在编写概要本篇文章，是此博客的第一篇正式文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。">
+<meta name="twitter:description" content="本篇文章还没有全部完成，只完成了一半，剩下一半还在编写 概要本篇文章，是此博客的第一篇正式文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。">
 <meta name="twitter:image" content="http://oxm0iiq5n.bkt.clouddn.com/WX20171010-230814@2x.png">
 
 
@@ -401,7 +401,8 @@
       
 
       
-        <h2 id="本篇文章还没有全部完成，只完成了一半，剩下一半还在编写"><a href="#本篇文章还没有全部完成，只完成了一半，剩下一半还在编写" class="headerlink" title="本篇文章还没有全部完成，只完成了一半，剩下一半还在编写"></a>本篇文章还没有全部完成，只完成了一半，剩下一半还在编写</h2><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>本篇文章，是此博客的第一篇正式文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。</p>
+        <p> 本篇文章还没有全部完成，只完成了一半，剩下一半还在编写</p>
+<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>本篇文章，是此博客的第一篇正式文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。</p>
 <a id="more"></a>
 <h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2><p>以下题目均出自 leetcode</p>
 <ul>
@@ -441,7 +442,7 @@
     \Rightarrow i = (N_2 - N_1) * C - L_2</script><p>$ i $ 显然可以是个合法的数字，所以自然是可以相遇的，而我们也求出了在 slow 到达环的入口时，再走多少步，即可相遇。其实不难看出，$ N_2 $ 可以有无限个值，想象一下，在一个环中，两个人相遇，其中一个人以另一个人的 $ 2 $ 倍的速度前进，那么当慢的那个人每走完半圈后，快的那个人正好也走完一圈，当慢的人每走完一圈回到相遇点后，快的那个也正好也走完了两圈，也是回到了相遇点。</p>
 <p>这就是对于在有环的单链表中快慢指针一定会相遇的数学证明。</p>
 <h2 id="求环的入口"><a href="#求环的入口" class="headerlink" title="求环的入口"></a>求环的入口</h2><p>在上一个问题之后，还有一个相关的问题，即如果此链表有环，求环的入口节点。直接想此算法可能比较难解，所以这个问题可以尝试着从数学上入手。</p>
-<h3 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h3><p>sss</p>
+<h3 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h3><p>未完待续</p>
 
       
     </div>
@@ -694,7 +695,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇文章还没有全部完成，只完成了一半，剩下一半还在编写"><span class="nav-number">1.</span> <span class="nav-text">本篇文章还没有全部完成，只完成了一半，剩下一半还在编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">2.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关题目"><span class="nav-number">3.</span> <span class="nav-text">相关题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断链表是否有环"><span class="nav-number">4.</span> <span class="nav-text">判断链表是否有环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法"><span class="nav-number">4.1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环时两个指针一定会相遇的数学证明有"><span class="nav-number">4.2.</span> <span class="nav-text">环时两个指针一定会相遇的数学证明有</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求环的入口"><span class="nav-number">5.</span> <span class="nav-text">求环的入口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学"><span class="nav-number">5.1.</span> <span class="nav-text">数学</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关题目"><span class="nav-number">2.</span> <span class="nav-text">相关题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断链表是否有环"><span class="nav-number">3.</span> <span class="nav-text">判断链表是否有环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法"><span class="nav-number">3.1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环时两个指针一定会相遇的数学证明有"><span class="nav-number">3.2.</span> <span class="nav-text">环时两个指针一定会相遇的数学证明有</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求环的入口"><span class="nav-number">4.</span> <span class="nav-text">求环的入口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学"><span class="nav-number">4.1.</span> <span class="nav-text">数学</span></a></li></ol></li></ol></div>
             
 
           </div>
