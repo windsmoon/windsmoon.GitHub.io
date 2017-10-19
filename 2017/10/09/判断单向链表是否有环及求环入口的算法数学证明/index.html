@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/WX20171010-230814@2x.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/WX20171011-232140@2x.png">
-<meta property="og:updated_time" content="2017-10-11T16:06:28.000Z">
+<meta property="og:updated_time" content="2017-10-19T05:41:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="判断单向链表是否有环及求环入口的算法数学证明">
 <meta name="twitter:description" content="读者您好：本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！ 概要本篇文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。">
@@ -468,7 +468,7 @@
     \Rightarrow 2(L_1 + L_2 + N_1C) = L_1 + L_2 + N_2C</script><script type="math/tex; mode=display">
     \Rightarrow L_1 + L_2 + 2N_1C = N_2C</script><script type="math/tex; mode=display">
     \Rightarrow L_1 = (N_2 - 2N_1)C - L_2</script><p>由此可以看出，$ L_1 $ 即链表头 head 到环入口的距离就等于换的周长的整数倍减去 $ L_2 $，其实就等于 $ L_3 $ 加上周长 $ C $ 的整数倍，而从相遇点向前走环周长的整数倍再加上 $ L_3 $ 的距离，正好就走到了环的入口，所以我们就可以推导出算法，即：让两个指针其中一个从链表头 head 出发，一次走一步，让另一个指针从相遇点出发，也一次走一步，相遇点就是环的入口。</p>
-<h3 id="数学-1"><a href="#数学-1" class="headerlink" title="数学"></a>数学</h3><p>关键代码如下：</p>
+<h3 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h3><p>关键代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">slow = head;</div><div class="line"></div><div class="line"><span class="keyword">while</span> (slow != fast)</div><div class="line">&#123;</div><div class="line">    slow = slow-&gt;next;</div><div class="line">    fast = fast-&gt;next;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>这里有一个小坑，在算法的最最开始，可以让 slow 和 fast 都为 head 指针，或者 slow 为 head 的下一个节点，fast 为下两个节点。如果让 slow 为 head 指针，fast 为下一个节点，则可能无法求出环的入口，甚至可能陷入死循环。但对于第一个问题，这个步骤没有影响。</p>
 
@@ -719,7 +719,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断链表是否有环"><span class="nav-number">2.</span> <span class="nav-text">判断链表是否有环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法"><span class="nav-number">2.1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有环时两个指针一定会相遇的数学证明"><span class="nav-number">2.2.</span> <span class="nav-text">有环时两个指针一定会相遇的数学证明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求环的入口"><span class="nav-number">3.</span> <span class="nav-text">求环的入口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学"><span class="nav-number">3.1.</span> <span class="nav-text">数学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学-1"><span class="nav-number">3.2.</span> <span class="nav-text">数学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">3.3.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断链表是否有环"><span class="nav-number">2.</span> <span class="nav-text">判断链表是否有环</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法"><span class="nav-number">2.1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有环时两个指针一定会相遇的数学证明"><span class="nav-number">2.2.</span> <span class="nav-text">有环时两个指针一定会相遇的数学证明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求环的入口"><span class="nav-number">3.</span> <span class="nav-text">求环的入口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学"><span class="nav-number">3.1.</span> <span class="nav-text">数学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法-1"><span class="nav-number">3.2.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">3.3.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></div>
             
 
           </div>
