@@ -1,1 +1,2 @@
+http://windsmoon.com/2017/11/28/切线空间-Tangent-Space-的计算与应用/
 http://windsmoon.com/2017/10/09/判断单向链表是否有环及求环入口的算法数学证明/
