@@ -81,13 +81,13 @@
 
 
 
-<meta name="description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！ 概要本篇文章主要讲解计算机图形学中切线空间是如何计算的，且会以法线贴图的例子来验证切线空间是否计算正确，以及展现切线空间的用途，例子会默认读者已经掌握了基本的法线贴图知识，但切线空间不仅仅只用于法线贴图。">
+<meta name="description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！ 概要本篇文章主要讲解计算机图形学中切线空间是如何计算的，且会以法线贴图的例子来验证切线空间是否计算正确，以及展现切线空间的用途. 本文需要读者掌握一定的 3D 坐标空间变换和简单光照相关的知识，以及法线贴图的基本知识（但切线空间不仅仅只用于法线贴图）。">
 <meta name="keywords" content="图形 数学 切线空间 法线贴图 视差贴图">
 <meta property="og:type" content="article">
 <meta property="og:title" content="切线空间(Tangent Space) 的计算与应用">
 <meta property="og:url" content="http://windsmoon.com/2017/11/28/切线空间-Tangent-Space-的计算与应用/index.html">
 <meta property="og:site_name" content="windsmoon 的游戏相关">
-<meta property="og:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！ 概要本篇文章主要讲解计算机图形学中切线空间是如何计算的，且会以法线贴图的例子来验证切线空间是否计算正确，以及展现切线空间的用途，例子会默认读者已经掌握了基本的法线贴图知识，但切线空间不仅仅只用于法线贴图。">
+<meta property="og:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！ 概要本篇文章主要讲解计算机图形学中切线空间是如何计算的，且会以法线贴图的例子来验证切线空间是否计算正确，以及展现切线空间的用途. 本文需要读者掌握一定的 3D 坐标空间变换和简单光照相关的知识，以及法线贴图的基本知识（但切线空间不仅仅只用于法线贴图）。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/tangentspace_tip.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/tangentspace_tip.png">
@@ -96,10 +96,10 @@
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/nonormap.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/normap.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/tangentspace_normap_in_tangent.jpg">
-<meta property="og:updated_time" content="2017-12-07T09:20:13.000Z">
+<meta property="og:updated_time" content="2017-12-09T05:27:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="切线空间(Tangent Space) 的计算与应用">
-<meta name="twitter:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！ 概要本篇文章主要讲解计算机图形学中切线空间是如何计算的，且会以法线贴图的例子来验证切线空间是否计算正确，以及展现切线空间的用途，例子会默认读者已经掌握了基本的法线贴图知识，但切线空间不仅仅只用于法线贴图。">
+<meta name="twitter:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！ 概要本篇文章主要讲解计算机图形学中切线空间是如何计算的，且会以法线贴图的例子来验证切线空间是否计算正确，以及展现切线空间的用途. 本文需要读者掌握一定的 3D 坐标空间变换和简单光照相关的知识，以及法线贴图的基本知识（但切线空间不仅仅只用于法线贴图）。">
 <meta name="twitter:image" content="http://oxm0iiq5n.bkt.clouddn.com/tangentspace_tip.png">
 
 
@@ -418,10 +418,12 @@
 
       
         <p><strong>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！</strong></p>
-<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>本篇文章主要讲解计算机图形学中切线空间是如何计算的，且会以法线贴图的例子来验证切线空间是否计算正确，以及展现切线空间的用途，例子会默认读者已经掌握了基本的法线贴图知识，但切线空间不仅仅只用于法线贴图。</p>
+<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>本篇文章主要讲解计算机图形学中切线空间是如何计算的，且会以法线贴图的例子来验证切线空间是否计算正确，以及展现切线空间的用途.</p>
+<p>本文需要读者掌握一定的 3D 坐标空间变换和简单光照相关的知识，以及法线贴图的基本知识（但切线空间不仅仅只用于法线贴图）。</p>
 <a id="more"></a>
-<h2 id="认识切线空间"><a href="#认识切线空间" class="headerlink" title="认识切线空间"></a>认识切线空间</h2><h3 id="什么是切线空间"><a href="#什么是切线空间" class="headerlink" title="什么是切线空间"></a>什么是切线空间</h3><p><strong>切线空间 (Tangent Space)</strong> 与 <strong>世界空间 (World Space)</strong> 和 <strong>观察空间 (View Space)</strong> 一样，都是一个坐标空间，它是由顶点所构成的平面的 UV 坐标轴以及表面的法线所构成，一般用 <strong>T (Tangent), B (Bitangent), N (Normal)</strong> 三个字母表示，即<strong>切线，副切线，法线</strong>，其中， T 对应 UV 中的 U, B 对应 UV 中的 V，下图是切线空间的示意图：</p>
+<h2 id="认识切线空间"><a href="#认识切线空间" class="headerlink" title="认识切线空间"></a>认识切线空间</h2><h3 id="什么是切线空间"><a href="#什么是切线空间" class="headerlink" title="什么是切线空间"></a>什么是切线空间</h3><p><strong>切线空间 (Tangent Space)</strong> 与 <strong>世界空间 (World Space)</strong> 和 <strong>观察空间 (View Space)</strong> 一样，都是一个坐标空间，它是由顶点所构成的平面的 UV 坐标轴以及表面的法线所构成，一般用 <strong>T (Tangent), B (Bitangent), N (Normal)</strong> 三个字母表示，即<strong>切线，副切线，法线</strong>， $T$ 对应 UV 中的 $U$, $B$ 对应 UV 中的 $V$，下图是切线空间的示意图：</p>
 <p><img src="http://oxm0iiq5n.bkt.clouddn.com/tangentspace_tip.png" alt="示意图"></p>
+<p>这里可能会有一个疑问，就是为什么 $T$ 对应 UV 中的 $U$, $B$ 对应 UV 中的 $V$ 。理论上，只要 $T$ 和 $B$ 垂直且都位于三角形的平面内，就可以达到使用切线空间的目的，因为这样我们总可以把所有需要的数据变换到同一个坐标空间下，但由于我们知道 UV 坐标的值，所以用 UV 坐标来对应 $T$ 和 $B$ 计算出数据了。</p>
 <h3 id="为什么要有切线空间"><a href="#为什么要有切线空间" class="headerlink" title="为什么要有切线空间"></a>为什么要有切线空间</h3><p>要理解为什么要有切线空间，可以从法线贴图入手。众所周知，绝大部分的法线贴图，颜色都是偏蓝色的，这是因为法线贴图中存储的法线向量大部分都是朝向或者接近 z 轴的，即 $(0, 0, 1)$，换算到 RGB 中，就是偏向蓝色，即 $(0.5, 0,5, 1)$ (后面的 Shader 中有算法)，这种贴图就是<strong>切线空间 (Tangent Space)</strong>下的贴图。这显然存在一个问题，想象一个位于世界坐标原点且没有进行任何变换的立方体，表面法线方向就有 6 个，因为有 6 个不同朝向的面（确切的说，可能是 12 个面，因为一个矩形一般由两个三角形组成），而且每个面完全相同，所以这时候我应该只需要一个面的法线贴图就可以了。但其实这时再用这种偏蓝色的法线贴图就不行了，因为立方体的上表面在世界空间的法线方向为 $(0, 1, 0)$，而在法线贴图中采样出来的法线基本都是接近于 $(0, 0, 1)$ 的，使用错误的法线会得到错误的光照结果。所以这时候需要做一张包含立方体所有面的法线信息的法线贴图，也就是<strong>模型空间 (Object Space)</strong>下的法线贴图，而这种贴图看起来就不单单是偏蓝色了，而是包含了多种颜色。</p>
 <p>这样看起来好像也没什么问题，但其实用切线空间下的法线贴图要比用模型空间下的法线贴图要有一些优势：</p>
 <ul>
