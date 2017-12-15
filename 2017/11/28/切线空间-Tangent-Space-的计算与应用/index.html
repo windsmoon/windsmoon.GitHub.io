@@ -81,13 +81,13 @@
 
 
 
-<meta name="description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。 原文地址 概要本篇文章主要讲解计算机图形学中切线空间是如何计算的，且会以法线贴图的例子来验证切线空间是否计算正确，以及展现切线空间的用途. 本文需要读者掌握一定的 3D 坐标空间变换和简单光照相关的知识，以及法线贴图的基本知识（但切线空间不仅仅只用于法线贴图）。 认识切线空间什么是切线空">
+<meta name="description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
 <meta name="keywords" content="图形 数学 切线空间 法线贴图 视差贴图">
 <meta property="og:type" content="article">
 <meta property="og:title" content="切线空间(Tangent Space) 的计算与应用">
 <meta property="og:url" content="http://windsmoon.com/2017/11/28/切线空间-Tangent-Space-的计算与应用/index.html">
 <meta property="og:site_name" content="windsmoon 的游戏相关">
-<meta property="og:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。 原文地址 概要本篇文章主要讲解计算机图形学中切线空间是如何计算的，且会以法线贴图的例子来验证切线空间是否计算正确，以及展现切线空间的用途. 本文需要读者掌握一定的 3D 坐标空间变换和简单光照相关的知识，以及法线贴图的基本知识（但切线空间不仅仅只用于法线贴图）。 认识切线空间什么是切线空">
+<meta property="og:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/tangentspace_tip.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/tangentspace_tip.png">
@@ -96,10 +96,10 @@
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/nonormap.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/normap.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/tangentspace_normap_in_tangent.jpg">
-<meta property="og:updated_time" content="2017-12-15T08:41:20.000Z">
+<meta property="og:updated_time" content="2017-12-15T14:57:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="切线空间(Tangent Space) 的计算与应用">
-<meta name="twitter:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。 原文地址 概要本篇文章主要讲解计算机图形学中切线空间是如何计算的，且会以法线贴图的例子来验证切线空间是否计算正确，以及展现切线空间的用途. 本文需要读者掌握一定的 3D 坐标空间变换和简单光照相关的知识，以及法线贴图的基本知识（但切线空间不仅仅只用于法线贴图）。 认识切线空间什么是切线空">
+<meta name="twitter:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
 <meta name="twitter:image" content="http://oxm0iiq5n.bkt.clouddn.com/tangentspace_tip.png">
 
 
@@ -417,8 +417,8 @@
       
 
       
-        <a id="more"></a>
-<p><strong>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。</strong></p>
+        <p><strong>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。</strong></p>
+<a id="more"></a>
 <p><a href="http://windsmoon.com/2017/11/28/%E5%88%87%E7%BA%BF%E7%A9%BA%E9%97%B4-Tangent-Space-%E7%9A%84%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%BA%94%E7%94%A8/">原文地址</a></p>
 <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>本篇文章主要讲解计算机图形学中切线空间是如何计算的，且会以法线贴图的例子来验证切线空间是否计算正确，以及展现切线空间的用途.</p>
 <p>本文需要读者掌握一定的 3D 坐标空间变换和简单光照相关的知识，以及法线贴图的基本知识（但切线空间不仅仅只用于法线贴图）。</p>

@@ -81,20 +81,20 @@
 
 
 
-<meta name="description" content="读者您好：本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！ 概要本篇文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。">
+<meta name="description" content="读者您好：本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！">
 <meta name="keywords" content="算法 链表 数学">
 <meta property="og:type" content="article">
 <meta property="og:title" content="判断单向链表是否有环及求环入口的算法数学证明">
 <meta property="og:url" content="http://windsmoon.com/2017/10/09/判断单向链表是否有环及求环入口的算法数学证明/index.html">
 <meta property="og:site_name" content="windsmoon 的游戏相关">
-<meta property="og:description" content="读者您好：本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！ 概要本篇文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。">
+<meta property="og:description" content="读者您好：本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/WX20171010-230814@2x.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/WX20171011-232140@2x.png">
-<meta property="og:updated_time" content="2017-11-29T15:55:08.000Z">
+<meta property="og:updated_time" content="2017-12-15T14:58:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="判断单向链表是否有环及求环入口的算法数学证明">
-<meta name="twitter:description" content="读者您好：本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！ 概要本篇文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。">
+<meta name="twitter:description" content="读者您好：本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！">
 <meta name="twitter:image" content="http://oxm0iiq5n.bkt.clouddn.com/WX20171010-230814@2x.png">
 
 
@@ -412,9 +412,9 @@
       
 
       
-        <p>读者您好：本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！</p>
-<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>本篇文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。</p>
+        <p><strong>读者您好：本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！</strong></p>
 <a id="more"></a>
+<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>本篇文章，主要讲解 title 中所描述算法的原理及数学证明。需要注意的是，本篇中出现的代码未必是完整代码，可能只是一个关键代码块，且采用 C++ 编写。</p>
 <h2 id="判断链表是否有环"><a href="#判断链表是否有环" class="headerlink" title="判断链表是否有环"></a>判断链表是否有环</h2><p>当单向链表中存在环的时候，遍历此链表会发生无限循环，无法到达末尾（实际上并没有末尾）的情况，所以在可能发生这种情况的时候，需要检查链表中是否存在一个环。</p>
 <h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>算法很简单，设置两个指针，分别为快指针（fast）和慢指针（slow），快指针每次向前走两步，慢指针每次走一步。如果快指针指向了 NULL，那么说明此链表中没有坏，因为有环会发生无限循环，不可能走到末尾。而在有环的情况下，两个指针会在环里绕圈，最终指向同一个地址，即两个指针相遇，根据这个就可以终止遍历代码且证实链表有环。</p>
 <p>附上关键代码：</p>
