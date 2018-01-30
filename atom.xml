@@ -61,28 +61,6 @@
   </entry>
   
   <entry>
-    <title>视差贴图（Parallax Mapping）(一)：基础视差贴图算法</title>
-    <link href="http://windsmoon.com/2017/11/28/1/"/>
-    <id>http://windsmoon.com/2017/11/28/1/</id>
-    <published>2017-11-28T14:27:04.000Z</published>
-    <updated>2017-12-25T16:09:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。</strong></p><a id="more"></a><!--[原文地址](http://windsmoon.com/2017/11/28/%E5%88%87%E7%BA%BF%E7%A9%BA%E9%97%B4-Tangent-Space-%E7%9A%84%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%BA%94%E7%94%A8/)--><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>本文是一个 <strong>关于视差贴图（Parallax Mapping）</strong> 几种算法的系列文章的开始，主要讲解视差贴图的概念和最基本的视差贴图算法。本文事例程序使用 C++ 和 OpenGL 编写，但描述的内容可以用于任何平台。</p><p>本文需要读者具备基本的 <strong>图形 API</strong> 编程知识以及了解 <strong>切线空间</strong> 和 <strong>法线贴图</strong> 的作用，切线空间的知识可以阅读我的这篇文章<a href="http://windsmoon.com/2017/11/28/%E5%88%87%E7%BA%BF%E7%A9%BA%E9%97%B4-Tangent-Space-%E7%9A%84%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%BA%94%E7%94%A8/">切线空间(Tangent Space) 的计算与应用</a>。</p><h2 id="视差贴图的作用"><a href="#视差贴图的作用" class="headerlink" title="视差贴图的作用"></a>视差贴图的作用</h2><p>视差贴图主要用于使一个平面看起来更有凹凸感，给人造成一种视觉错觉，比如用于墙面，可以让前面看上去更有凹凸感。如果你了解法线贴图，你应该知道法线贴图也可以得到这种效果，但这只是在原来的平面上模拟了正确的光照，效果并不是特别真实，尤其是当观察角度很小的时候。下面是只用法线贴图和同时使用法线贴图和视差贴图分别得到的结果（视差贴图需要和法线贴图一起才能达到理想的效果，否则只有视觉错觉但是没有对应的光照会看起来很奇怪，本文后面也会给出截图）：</p><p><img src="" alt="只用法线贴图"></p><p><img src="" alt="同时使用法线贴图和视差贴图"></p><p>可以看到，后者明显比前者效果要好的多。</p><h2 id="视差贴图的原理"><a href="#视差贴图的原理" class="headerlink" title="视差贴图的原理"></a>视差贴图的原理</h2><p>视差贴图的实现原理很简单，通过偏移纹理坐标，可以让一些纹理上的颜色堆积到一起，配合上法线贴图得到的光照，就会有明显的凹凸错觉。下图是视差贴图基本的工作原理：</p><p><img src="" alt="视差贴图基本原理"></p><p>由图可知，</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="图形" scheme="http://windsmoon.com/categories/%E5%9B%BE%E5%BD%A2/"/>
-    
-    
-      <category term="图形 数学 切线空间 法线贴图 视差贴图" scheme="http://windsmoon.com/tags/%E5%9B%BE%E5%BD%A2-%E6%95%B0%E5%AD%A6-%E5%88%87%E7%BA%BF%E7%A9%BA%E9%97%B4-%E6%B3%95%E7%BA%BF%E8%B4%B4%E5%9B%BE-%E8%A7%86%E5%B7%AE%E8%B4%B4%E5%9B%BE/"/>
-    
-  </entry>
-  
-  <entry>
     <title>判断单向链表是否有环及求环入口的算法数学证明</title>
     <link href="http://windsmoon.com/2017/10/09/%E5%88%A4%E6%96%AD%E5%8D%95%E5%90%91%E9%93%BE%E8%A1%A8%E6%98%AF%E5%90%A6%E6%9C%89%E7%8E%AF%E5%8F%8A%E6%B1%82%E7%8E%AF%E5%85%A5%E5%8F%A3%E7%9A%84%E7%AE%97%E6%B3%95%E6%95%B0%E5%AD%A6%E8%AF%81%E6%98%8E/"/>
     <id>http://windsmoon.com/2017/10/09/判断单向链表是否有环及求环入口的算法数学证明/</id>
