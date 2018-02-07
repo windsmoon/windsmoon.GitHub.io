@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/WX20171010-230814@2x.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/WX20171011-232140@2x.png">
-<meta property="og:updated_time" content="2018-02-07T02:49:52.000Z">
+<meta property="og:updated_time" content="2018-02-07T07:26:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="判断单向链表是否有环及求环入口的算法数学证明">
 <meta name="twitter:description" content="读者您好：本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！">
@@ -425,7 +425,7 @@
 <li>链表头指针 head 到链表环的入口处的距离为 $ L_1 $</li>
 <li>fast 指针距离环的入口的距离为 $ L_2 $</li>
 <li>fast 已经在环内走了 $ N_1 $ 圈（向下取整）</li>
-<li>slow 再经过 $ i $ 步与 fast 相遇</li>
+<li>假设 slow 再经过 $ i $ 步与 fast 相遇</li>
 <li>环的周长为 $ C $</li>
 <li>fast 和 slow 走过的总路程分别为 $ disFast $ 和 $ disSlow $ </li>
 </ul>
@@ -440,7 +440,7 @@
 <script type="math/tex; mode=display">
     i \; mod \; C = (L_2 + N_1C + 2i) \; mod \; C</script><script type="math/tex; mode=display">
     \Rightarrow (L_2 + N_1C + i) \; mod \; C = 0</script><script type="math/tex; mode=display">
-    \Rightarrow (L_2 + i) \; mod \; C = 0 \; (加减 C 的整数倍对于取模来说没有影响）</script><p>可以看到， $L_2$ 和 $i$ 总和等于环的周长的整数倍，这样我们实际上就求出了 $i$ 的值。结合图和最终的等式，我们可以看到，对于任意 $L_2$ ，都可以求出无数个 $i$ 值，每个值都对应一个周长的整数倍，而对于每一个 $i$ 值，最终相遇的位置都一样，这也很好理解，当 $slow$ 和 $fast$ 相遇后，由于 2 倍速度的关系，当 $slow$ 继续走半圈的时候，$fast$ 走了一圈回到了之前的相遇点，当 $slow$ 再走半圈回到之前的相遇点， $fast$ 又走了一圈再次回到之前的相遇点。</p>
+    \Rightarrow (L_2 + i) \; mod \; C = 0 \; (加减 C 的整数倍对于取模来说没有影响）</script><p>可以看到， $L_2$ 和 $i$ 总和等于环的周长的整数倍，这个等式是成立的，实际上我们也求出了 $i$ 的值。结合图和最终的等式，我们可以看到，对于任意 $L_2$ ，都可以求出无数个 $i$ 值，每个值都对应一个周长的整数倍，而对于每一个 $i$ 值，最终相遇的位置都一样，这也很好理解，当 $slow$ 和 $fast$ 相遇后，由于 2 倍速度的关系，当 $slow$ 继续走半圈的时候，$fast$ 走了一圈回到了之前的相遇点，当 $slow$ 再走半圈回到之前的相遇点， $fast$ 又走了一圈再次回到之前的相遇点。</p>
 <p>这就是对于在有环的单链表中快慢指针一定会相遇的数学证明。</p>
 <h2 id="求环的入口"><a href="#求环的入口" class="headerlink" title="求环的入口"></a>求环的入口</h2><p>在上一个问题之后，还有一个相关的问题，即如果此链表有环，求环的入口节点。直接想此算法可能比较难解，所以这个问题可以尝试着从数学上入手。</p>
 <h3 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h3><p>设 <strong>(注意与上一个问题所表示的含义可能有不同)</strong> ：</p>
