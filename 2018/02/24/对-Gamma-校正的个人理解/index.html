@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/Gamma_Correction_brightness.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/Gamma_Correction_curve.png">
-<meta property="og:updated_time" content="2018-02-25T06:11:07.000Z">
+<meta property="og:updated_time" content="2018-02-25T06:13:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对 Gamma 校正的个人理解">
 <meta name="twitter:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
@@ -457,7 +457,12 @@
 <p>而如果因为一些原因，设计师直接出了一张线性空间的图，那么在计算时不需要进行转换，但是输出的时候，需要进行一次 Gamma 校正，转换到 sRGB 空间，这样输出到物理世界的值就是计算机纹理中存储的线性空间的值了。</p>
 <h3 id="关于纹理颜色空间的选择"><a href="#关于纹理颜色空间的选择" class="headerlink" title="关于纹理颜色空间的选择"></a>关于纹理颜色空间的选择</h3><p>那什么时候需要线性空间呢，什么时候需要 sRGB 空间呢？</p>
 <p>我个人认为的是，表示颜色的纹理应该选择在 sRGB 空间，因为这可以改变不同明暗的颜色的存储范围，使其更符合人眼特性。而一些表示纯数值的纹理，就直接选择线性空间即可，不需要再换转了，因为他们本身就是用于计算的。比如一张表示 Phong 光照模型中物体镜面反射程度的镜面反射贴图，就直接选择线性空间的值即可，采样后就直接可以参与计算了。</p>
-<p>一个可能的错误想法是，假设表示光源颜色的纹理存储的颜色是 x (这里为了方便就直接用一个 x 代替了)，镜面反射程度是 y，那么镜面反射的颜色<strong>通过屏幕后进入物理世界</strong>的的值为 $(xy) ^ {2.2}$，这其实是不对的。因为如果颜色值是 sRGB 空间的，那么正确结果是 $((x ^ {2.2} <em> y) ^ {1 / 2.2}) ^ {2.2} = (x ^ {2.2} </em> y)$, 观察这个结果会发现，就是 sRGB 空间的颜色转换到线性空间，然后再进行计算。如果颜色值是线性空间的，那么正确的结果是 $((xy) ^ {1 / 2.2}) ^ {2.2} = xy$，即用两个线性空间的值直接进行计算。</p>
+<p>一个可能的错误想法是，假设表示光源颜色的纹理存储的颜色是 x (这里为了方便就直接用一个 x 代替了)，镜面反射程度是 y，那么镜面反射的颜色<strong>通过屏幕后进入物理世界</strong>的的值为 $(xy) ^ {2.2}$，这其实是不对的。因为如果颜色值是 sRGB 空间的，那么正确结果是 </p>
+<script type="math/tex; mode=display">
+    ((x ^ {2.2} * y) ^ {1 / 2.2}) ^ {2.2} = (x ^ {2.2} * y)</script><p>观察这个结果会发现，就是 sRGB 空间的颜色转换到线性空间，然后再进行计算。</p>
+<p>如果颜色值是线性空间的，那么正确的结果是 </p>
+<script type="math/tex; mode=display">
+    ((xy) ^ {1 / 2.2}) ^ {2.2} = xy</script><p>即用两个线性空间的值直接进行计算。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章的目的主要是梳理 Gamma 校正到底是什么，实际使用时，Gamma 校正还有一些地方需要注意，尤其是在使用纹理的时候，有机会我也会进行一些探讨。</p>
 <p>以上关于 Gamma 校正相关的解释都是我个人的理解，如果有不对的地方，还请指出。</p>
 <p>感谢阅读。</p>
