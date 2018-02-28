@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://windsmoon.com/"/>
-  <updated>2018-02-25T06:13:20.000Z</updated>
+  <updated>2018-02-28T15:54:18.000Z</updated>
   <id>http://windsmoon.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>游戏开发资料整理</title>
+    <link href="http://windsmoon.com/2018/02/26/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86/"/>
+    <id>http://windsmoon.com/2018/02/26/游戏开发资料整理/</id>
+    <published>2018-02-26T06:15:33.000Z</published>
+    <updated>2018-02-28T15:54:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>游戏开发资料整理，持续更新</p><a id="more"></a><h1 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h1><ul><li><h2 id="图形"><a href="#图形" class="headerlink" title="图形"></a>图形</h2><ul><li><h3 id="中文"><a href="#中文" class="headerlink" title="中文"></a>中文</h3><ul><li><a href="http://windsmoon.com/2018/02/24/%E5%AF%B9-Gamma-%E6%A0%A1%E6%AD%A3%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/">对 Gamma 校正的个人理解</a></li><li><a href="http://windsmoon.com/2017/11/28/%E5%88%87%E7%BA%BF%E7%A9%BA%E9%97%B4-Tangent-Space-%E7%9A%84%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%BA%94%E7%94%A8/">切线空间(Tangent Space) 的计算与应用</a></li></ul></li><li><h3 id="英文"><a href="#英文" class="headerlink" title="英文"></a>英文</h3></li></ul></li><li><h2 id="Unity"><a href="#Unity" class="headerlink" title="Unity"></a>Unity</h2><ul><li><h3 id="中文-1"><a href="#中文-1" class="headerlink" title="中文"></a>中文</h3></li><li><h3 id="英文-1"><a href="#英文-1" class="headerlink" title="英文"></a>英文</h3><ul><li><a href="http://www.habrador.com/tutorials/unity-mesh-combining-tutorial/" target="_blank" rel="external">Dynamic Mesh Combining in Unity with C#</a></li></ul></li></ul></li></ul><h1 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h1><h1 id="策划"><a href="#策划" class="headerlink" title="策划"></a>策划</h1><ul><li><h2 id="剧本"><a href="#剧本" class="headerlink" title="剧本"></a>剧本</h2><ul><li><h3 id="中文-2"><a href="#中文-2" class="headerlink" title="中文"></a>中文</h3><ul><li><a href="https://www.bilibili.com/video/av18795753/?t=2326" target="_blank" rel="external">【卡姐翻译】《地平线：零之曙光》编剧深入访谈 John Gonzalez on Writing Horizon Zer</a></li></ul></li><li><h3 id="英文-2"><a href="#英文-2" class="headerlink" title="英文"></a>英文</h3></li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;游戏开发资料整理，持续更新&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="资料" scheme="http://windsmoon.com/categories/%E8%B5%84%E6%96%99/"/>
+    
+    
+      <category term="游戏开发 技术资料 图形 算法" scheme="http://windsmoon.com/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91-%E6%8A%80%E6%9C%AF%E8%B5%84%E6%96%99-%E5%9B%BE%E5%BD%A2-%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>对 Gamma 校正的个人理解</title>

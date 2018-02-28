@@ -1,3 +1,4 @@
+http://windsmoon.com/2018/02/26/游戏开发资料整理/
 http://windsmoon.com/2018/02/24/对-Gamma-校正的个人理解/
 http://windsmoon.com/2018/01/29/Global_Game_Jam 经历分享/
 http://windsmoon.com/2017/11/28/切线空间-Tangent-Space-的计算与应用/
