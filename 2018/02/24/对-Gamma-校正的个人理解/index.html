@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/Gamma_Correction_brightness.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/Gamma_Correction_curve.png">
-<meta property="og:updated_time" content="2018-02-25T06:13:20.000Z">
+<meta property="og:updated_time" content="2018-03-12T14:21:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对 Gamma 校正的个人理解">
 <meta name="twitter:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
@@ -414,7 +414,7 @@
       
         <p><strong>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。</strong></p>
 <a id="more"></a>
-<h2 id="为什么要写这篇文章"><a href="#为什么要写这篇文章" class="headerlink" title="为什么要写这篇文章"></a>为什么要写这篇文章</h2><p>Gamma 校正，看起来似乎是一件很简单的事情，做一次幂运算就可以了，但是如果深究的话，就会发现 Gamma 校正是个有点容易让人混乱的东西，每个人的解释可能都有一些不一样。在解释 Gamma 校正的时候，经常会拿出几张容易令人混淆的表示亮度值的图，再就是需要频繁在不同颜色空间中转换，绕来绕去，最主要的是，Gamma 值在不止一个地方会用到，而这些地方应用的时候还或多或少有一些关联，且这几个地方的用到的值还都很接近，所以深究 Gamma 校正的时候，非让容易令人感到困惑。我在读了不少资料，自己进行了一番理解之后，打算写一篇文章<strong>记录和分享</strong>一下自己的所得。<strong>当然，我也只能说我会把自己的理解尽可能清楚地表达出来，如果有错误，欢迎批评指正</strong>。</p>
+<h2 id="为什么要写这篇文章"><a href="#为什么要写这篇文章" class="headerlink" title="为什么要写这篇文章"></a>为什么要写这篇文章</h2><p>Gamma 校正，看起来似乎是一件很简单的事情，做一次幂运算就可以了，但是如果深究的话，就会发现 Gamma 校正是个有点容易让人混乱的东西，每个人的解释可能都有一些不一样。在解释 Gamma 校正的时候，经常会拿出几张容易令人混淆的表示亮度值的图，再就是需要频繁在不同颜色空间中转换，绕来绕去，最主要的是，Gamma 值在不止一个地方会用到，而这些地方应用的时候还或多或少有一些关联，且这几个地方的用到的值还都很接近，所以深究 Gamma 校正的时候，非让容易令人感到困惑。我在读了不少资料，自己进行了一番理解之后，打算写一篇文章<strong>记录和分享</strong>一下自己的所得。<strong>当然，我也只能说我会把自己的理解尽可能清楚地表达出来，如果有错误，请一定指出来</strong>。</p>
 <h2 id="Gamma-是什么"><a href="#Gamma-是什么" class="headerlink" title="Gamma 是什么"></a>Gamma 是什么</h2><h3 id="物理亮度"><a href="#物理亮度" class="headerlink" title="物理亮度"></a>物理亮度</h3><p>物理亮度，可以认为是由光子数量来决定的，并且亮度与光子数量成线性关系，也就是说物理亮度存在于一个线性的空间中，物理亮度每提升 0.1，亮度的增加都是相同的。先说明这一点也是为了避免读者在后面的文字中对提到的物理亮度与其他东西感到混淆。</p>
 <h3 id="Gamma-的由来"><a href="#Gamma-的由来" class="headerlink" title="Gamma 的由来"></a>Gamma 的由来</h3><p>Gamma 的由来，说法是不统一的。</p>
 <p>大部分人认为是由于早期 CRT 显示器的问题，即输出的亮度和输入的电压并非线性关系，而是<strong>近似</strong> 2.2 次幂的关系，导致进入人眼的亮度要比计算机上存储的亮度要低。例如，计算机上存储的亮度为 0.5，经过显示器调整后变为 0.5 的 2.2 次幂，即 0.218。为了让进入人眼的亮度与计算机中存储的值相同，需要在显示器调整前将亮度变为自身的 1/2.2 次幂，即 0.73，这样在经过显示器的调整，进入人眼就是 0.5 了，也就是说，Gamma 校正可以补偿由于显示器造成的亮度下降。这里需要注意的是，2.2 这个值是一个近似值，或者可以说是一个标准，实际上可能会有不同，现在的显示器甚至可以调节。</p>

@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://windsmoon.com/2018/02/24/%E5%AF%B9-Gamma-%E6%A0%A1%E6%AD%A3%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/</loc>
+    <lastmod>2018-03-12T14:21:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>对 Gamma 校正的个人理解</title>
+        <pubTime>2018-02-24T11:08:27.000Z</pubTime>
+        
+        <tag>Gamma Gamma校正 图形 游戏开发</tag>
+         
+         
+           
+             
+              <breadCrumb title="图形" url="http://windsmoon.com/categories/%E5%9B%BE%E5%BD%A2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://windsmoon.com/2018/02/26/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E8%B5%84%E6%96%99%E6%95%B4%E7%90%86/</loc>
     <lastmod>2018-02-28T15:54:18.000Z</lastmod>
     <data>
@@ -37,26 +57,6 @@
            
              
               <breadCrumb title="独立游戏" url="http://windsmoon.com/categories/%E7%8B%AC%E7%AB%8B%E6%B8%B8%E6%88%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://windsmoon.com/2018/02/24/%E5%AF%B9-Gamma-%E6%A0%A1%E6%AD%A3%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/</loc>
-    <lastmod>2018-02-25T06:13:20.000Z</lastmod>
-    <data>
-        <display>
-        <title>对 Gamma 校正的个人理解</title>
-        <pubTime>2018-02-24T11:08:27.000Z</pubTime>
-        
-        <tag>Gamma Gamma校正 图形 游戏开发</tag>
-         
-         
-           
-             
-              <breadCrumb title="图形" url="http://windsmoon.com/categories/%E5%9B%BE%E5%BD%A2/"/>
           
         </display>
     </data>
