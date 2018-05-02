@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/GenerateNormalMap_NormalMapWithHeightScale01.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/GenerateNormalMap_DiffuseWithVertexNormal.png">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/GenerateNormalMap_DiffuseWithNormalMap.png">
-<meta property="og:updated_time" content="2018-05-02T15:14:15.000Z">
+<meta property="og:updated_time" content="2018-05-02T15:38:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何生成法线贴图">
 <meta name="twitter:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！">
@@ -461,7 +461,7 @@
 <p>当这个值为 _HeightScale 值为 0.01 时，法线贴图结果如下：</p>
 <p><img src="http://oxm0iiq5n.bkt.clouddn.com/GenerateNormalMap_NormalMapWithHeightScale01.png" alt="原图"></p>
 <p>这张法线贴图看起来正常了，而且仔细观察可以发现，每一个砖块的上侧是偏绿的，因为 y 对应于 g，右侧是偏红的，因为 x 对应于 r。</p>
-<h2 id="可以不用中心差分法吗"><a href="#可以不用中心差分法吗" class="headerlink" title="可以不用中心差分法吗"></a>可以不用中心差分法吗</h2><p>可以使用有限差分法，即不取像素两边相邻的点，而是只取一个方向上相邻的点与当前像素比较，这种方法想想也知道效果不如中心差分法的好。举个典型的例子，一个像素点的高度为 1，uv 两个方向各自相邻近的两边的点高度为 0.5，那么这个点法线显然是垂直于平面的，如果用有限差分法，那就不是垂直于平面的了。</p>
+<h2 id="可以不用中心差分法吗"><a href="#可以不用中心差分法吗" class="headerlink" title="可以不用中心差分法吗"></a>可以不用中心差分法吗</h2><p>可以使用有限差分法，即不取像素两边相邻的点，而是只取一个方向上相邻的点与当前像素比较，这种方法想想也知道效果一般不如中心差分法的好。</p>
 <h2 id="除了高度差缩放，还有别的参数可以调节吗"><a href="#除了高度差缩放，还有别的参数可以调节吗" class="headerlink" title="除了高度差缩放，还有别的参数可以调节吗"></a>除了高度差缩放，还有别的参数可以调节吗</h2><p>有，这里简单列举两个，因为修改都很简单，而且效果不适合这里讲的例子，所以不在本文实现了。</p>
 <h3 id="凹凸值"><a href="#凹凸值" class="headerlink" title="凹凸值"></a>凹凸值</h3><p>图中每一个砖块，是凹进去的还是突出来的呢？要改变这个属性，只需要调整法线 xy 的正负即可，就会改变原有的凹凸方向，稍微想象一下应该就能想出来。</p>
 <h3 id="粗糙度"><a href="#粗糙度" class="headerlink" title="粗糙度"></a>粗糙度</h3><p>可以在原来的法线题图基础上，进一步修改法线贴图的粗糙度。其实之前的高度差缩放，也是处理粗糙度，但是当你有一张已经生成好的法线贴图时，想修改就需要做额外的处理了。也很简单，对法线的 xy 分量进行缩放，然后再重新计算 $z = \sqrt{(1 - x^2 - y^2)}$) 即可。</p>
