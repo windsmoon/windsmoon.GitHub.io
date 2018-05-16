@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://windsmoon.com/"/>
-  <updated>2018-05-07T05:01:59.000Z</updated>
+  <updated>2018-05-16T05:20:24.000Z</updated>
   <id>http://windsmoon.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为什么 Mipmap 会多占 1／3 内存而不是其他值？</title>
+    <link href="http://windsmoon.com/2018/05/16/%E4%B8%BA%E4%BB%80%E4%B9%88%20Mipmap%20%E4%BC%9A%E5%A4%9A%E5%8D%A0%201%EF%BC%8F3%20%E5%86%85%E5%AD%98%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%B6%E4%BB%96%E5%80%BC%EF%BC%9F/"/>
+    <id>http://windsmoon.com/2018/05/16/为什么 Mipmap 会多占 1／3 内存而不是其他值？/</id>
+    <published>2018-05-16T04:23:21.000Z</published>
+    <updated>2018-05-16T05:20:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！</strong></p><a id="more"></a><h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><p>最基本的图形学基础和 Mipmap 基本原理。</p><h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>Mipmap 会多占 1/3 内存在游戏渲染界可能是常识了，不过最初我在接触的时候也没多想，以为只是一个通过实际测量得来的经验值，如果有比现在常见的分辨率大很多的纹理，就会有不同的结果。但是最近在复习数学的时候（说来惭愧，与其叫复习不如说是重学，大学高数高代离散数分都靠考前一个礼拜突击才过的），突然想到了这个其实可以用数学来求解，无论纹理多大，Mipmap 所多占的内存都是一样的。</p><h2 id="Mipmap-各级别尺寸"><a href="#Mipmap-各级别尺寸" class="headerlink" title="Mipmap 各级别尺寸"></a>Mipmap 各级别尺寸</h2><p>想要用数学求解，必须先了解 Mipmap 各个级别的尺寸大小是如何确定的，正常来说，Mipmap 会生成很多级别，每一级别的宽高都是上一个级别的 1/2，也就是说面积为上一个级别的 1/4，直到最终只有 1x1 分辨率的大小。</p><p>举个例子，一张 1024 <em> 1024 的纹理，生成 Mipmap 后，会新产生 512 </em> 512，256 <em> 256，128 </em> 128，64 <em> 64，32 </em> 32，16 <em> 16，8 </em> 8，4 <em> 4，2 </em> 2，1 <em> 1 这几张不同纹理级别的纹理。可以手动计算一下，新产生的纹理大小总和是 349525 个像素，而原来的 1024 </em> 1024 纹理有 1048576 个像素，349525 / 1048576 约等于 0.33333302，也就是大约 1/3。</p><p>扩展到一般情况，需要用数学求解一下。</p><h2 id="数学推导"><a href="#数学推导" class="headerlink" title="数学推导"></a>数学推导</h2><p>用错位相减法可以方便地求解：</p><script type="math/tex; mode=display">S = \frac{1}{4} + \frac{1}{16} + \frac{1}{64} + \cdots + \frac{1}{4^n}</script><script type="math/tex; mode=display">4S = 1 + \frac{1}{4} + \frac{1}{16} +  \cdots  + \frac{1}{4^{n-1}}</script><script type="math/tex; mode=display">4S - S = 3S = 1 - \frac{1}{4^n}</script><p>我们不会去考虑 n 只有 1 的情况，这没什么意义，也很特殊。所以我们直接求 n 趋向于正无穷时的结果。</p><script type="math/tex; mode=display">\lim_{n \to \infty}3S = \lim_{n \to \infty}1 - \frac{1}{4^n} = 1</script><p>所以</p><script type="math/tex; mode=display">\lim_{n \to \infty}S = \frac{1}{3}</script><h2 id="关于数学的一些想法"><a href="#关于数学的一些想法" class="headerlink" title="关于数学的一些想法"></a>关于数学的一些想法</h2><p>数学确实是个很有意思的东西，这篇文章也是在我复习的时候想到的，这也印证了我的一个想法，长期不做数学题，数学思维就会退化，以后还是要更加努力才行。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！&lt;/strong&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="图形" scheme="http://windsmoon.com/categories/%E5%9B%BE%E5%BD%A2/"/>
+    
+    
+      <category term="游戏开发 图形学 Mipmap 内存" scheme="http://windsmoon.com/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91-%E5%9B%BE%E5%BD%A2%E5%AD%A6-Mipmap-%E5%86%85%E5%AD%98/"/>
+    
+  </entry>
   
   <entry>
     <title>从纹理中生成法线贴图</title>
