@@ -411,39 +411,14 @@
 
       
         
-          
-            <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>最近两三周在写 Unity 的编辑器扩展，主要是给项目开发一个地图编辑器，期间遇到了一些坑，所以有了开个系列记录一下的想法。这是第一篇，我希望不要再有第二篇了。</p>
-<h2 id="问题与解决方案"><a href="#问题与解决方案" class="headerlink" title="问题与解决方案"></a>问题与解决方案</h2><h3 id="数据序列化"><a href="#数据序列化" class="headerlink" title="数据序列化"></a>数据序列化</h3><p>写编辑器扩展，如果需要保存数据到文件，序列化数据是必不可少的。我目前用过两个方案，一个是利用 Unity 自身的序列化系统配合 ScriptableObject，一个是利用 C# 的序列化 API ，这两种方式各有优劣。</p>
-<h4 id="C-序列化"><a href="#C-序列化" class="headerlink" title="C# 序列化"></a>C# 序列化</h4><p>C# 序列化方便快捷，但是在 Unity 中不一定好用。如果需要用 C# 的序列化，class 或者 struct 必须加上 Serializable 这个 Attribute，然而可能大部分你想序列化的 C# 内置 class 或者 struct，都没加这个 Attribute，例如 VectorX 系列，还有 ScriptableObject。之前需要用 C# 序列化的时候，Vector2 和 Vector3 等我都自己实现了一个可序列化版本。</p>
-<p>C# 序列化在 Unity 中还有一个问题，就是不如内置序列化系统方便，因为 Unity 的序列化几乎每时每刻都在进行，虽然有相应接口，但你必须确保在必须要序列化的时机进行序列化，以免数据被清空。</p>
-<h4 id="Unity-内置序列化"><a href="#Unity-内置序列化" class="headerlink" title="Unity 内置序列化"></a>Unity 内置序列化</h4><p>Unity 内置序列化系统以及一些配套组件（例如 ScriptableObject 等）在 Unity 中能保证序列化和反序列化的数据正确性，并且几乎不需要关心序列化的时机，只需要指明哪些数据需要序列化即可。一般来说，在会被 Unity 进行序列化的内置类中，public 字段和被 SerializeField 这个 Attribute 修饰的字段会被序列化，例如 MonoBehaviour 中的字段，ScriptableObject 也是，其他自定义类我没验证过，但是 private 的我都加了 SerializeField 这个标签没有问题，public 的也可以正确序列化。</p>
-<p><strong>但是不是所有类型都能序列化的！</strong>在常用的需要序列化的类中，Dictionary 和二维数组以及其他有嵌套关系的容器（目前看来是这样，不能保证所有这种容器一定不能被序列化）不能被序列化。好在都有解决办法。</p>
-<h5 id="序列化-Dictionary"><a href="#序列化-Dictionary" class="headerlink" title="序列化 Dictionary"></a>序列化 Dictionary</h5><p>虽然 Dictionary 不能被 Unity 序列化，但是 List 是可以的，我们可以把 Dictionary 的 keys 和 values 保存在两个 List 里，这样就可以序列化和反序列化字典了。<strong>注意我不是说要用两个 List 完全代替 Dictionary 这个数据结构</strong>，这样就失去了 Dictionary 的数据结构特性了，我们只需要在 Unity 进行序列化和反序列化的时候把 Dictionary 挪到两个 List 里和从 两个 List 里复原 Dictionary 就行了。Unity 进行序列化和反序列化的时机是可以知道的，关键在于一个 interface。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">using UnityEngine.Scripting;</div><div class="line"></div><div class="line">namespace UnityEngine</div><div class="line">&#123;</div><div class="line">	[RequiredByNativeCode]</div><div class="line">	public interface ISerializationCallbackReceiver</div><div class="line">	&#123;</div><div class="line">		/// &lt;summary&gt;</div><div class="line">		///   &lt;para&gt;Implement this method to receive a callback before Unity serializes your object.&lt;/para&gt;</div><div class="line">		/// &lt;/summary&gt;</div><div class="line">		void OnBeforeSerialize ();</div><div class="line"></div><div class="line">		/// &lt;summary&gt;</div><div class="line">		///   &lt;para&gt;Implement this method to receive a callback after Unity deserializes your object.&lt;/para&gt;</div><div class="line">		/// &lt;/summary&gt;</div><div class="line">		void OnAfterDeserialize ();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p> 这个 interface 有两个方法，OnBeforeSerialize 在将要序列化的时候执行，OnAfterDeserialize 在反序列化完成后执行。</p>
-<p>所以我们只需要在 OnBeforeSerialize 中把 keys 和 values 保存到两个 List 里，在 OnAfterDeserialize 中根据两个 List 中的数据重建一个 Dictionary 就行了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public void OnBeforeSerialize()</div><div class="line">&#123;</div><div class="line">    keyList.Clear();</div><div class="line">    valueList.Clear();</div><div class="line"></div><div class="line">    foreach (var pair in dataDict)</div><div class="line">    &#123;</div><div class="line">        keyList.Add(pair.Key);</div><div class="line">        valueList.Add(pair.Value);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public void OnAfterDeserialize()</div><div class="line">&#123;</div><div class="line">    dataDict.Clear();</div><div class="line"></div><div class="line">    for (int i = 0; i &lt; keyList.Count; ++i)</div><div class="line">    &#123;</div><div class="line">        dataDict[keyList[i]] = valueList[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>要注意的是这个 interface 目前不支持 struct 。</p>
-<h5 id="嵌套容器"><a href="#嵌套容器" class="headerlink" title="嵌套容器"></a>嵌套容器</h5><p>如果是类似这样的数据，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Dictionary&lt;int, X[]&gt;</div></pre></td></tr></table></figure>
-<p>则里面的 X[] 是不能被序列化的，但是如果你将 X[] 写在一个类里。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class XWrapper</div><div class="line">&#123;</div><div class="line">    [SerializeField]</div><div class="line">    private X[] Xs;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>外部容器保存这个 XWrapper ，就可以正确序列化数组中的数据了。所以如果你在使用嵌套容器的时候出现问题，可以考虑这种方法。</p>
-<h3 id="内存数据清空"><a href="#内存数据清空" class="headerlink" title="内存数据清空"></a>内存数据清空</h3><p>写编辑器代码的时候，会有一些情况导致内存中的数据被清空，我判断内存数据被清空重置的方式是观察静态构造函数在控制台的输出。目前我遇到的情况有：</p>
-<ul>
-<li>编译代码：代码修改后 Unity 会进行重新编译，并把内存清空重置，重新加载代码。例如一个没有被序列化的变量被赋值以后，再修改代码，编译完成后这个变量的值就为  null 或者默认的值类型数据了。我在某个类的静态构造函数内输出一段字符串到控制台，当重新编译代码的时候，访问这个类，控制台会进行输出，但之后再次访问就不会，这说明代码没有被重新加载，但是当更改代码并进行编译后，第一次访问这个类依然会有输出，这足以说明问题。这里有一个需要注意的点是，修改代码后，并不会立即进行编译。一般来说，会等一会儿才开始编译，且代码编译的时候会有卡顿，并且编译完成后控制台里也会输出各种警告（如果有的话），这时候就说明编译完成了。也就是说你必须等待一会儿才行，如果你改完代码后立即回到编辑器里执行你写的代码，这时候实际上还是之前的代码。有一个小技巧是可以改完代码点运行，运行前会进行代码编译，运行开始就说明是新的代码了，这样做的好处是你可以确保代码是新的代码，<strong>但必须注意运行也会把没序列化的数据清除</strong>。</li>
-<li>运行：点击运行按钮的时候，会进行数据的重置，我在某个 MonoBehaviour 的 Awake 方法里访问上面提到的类，每次都会有输出。但是运行还需要注意的是，Unity 点击运行会把没有进行序列化的数据丢掉，这时退出运行，之前在编辑器状态下设置好的数据就没了。序列化的数据，这里是指 MonoBehaviour 中访问修饰符为 public 的变量和拥有 SerializeField 这个 Attribute 的变量。</li>
-</ul>
-<p><strong>退出运行不会进行内存重置，但很重要</strong> ，因为退出也相当于加载了场景，会执行 Awake 等相关函数，如果你有一些初始化函数在这时候执行，你需要注意它是否会影响到你。</p>
-<h3 id="ScriptableObject"><a href="#ScriptableObject" class="headerlink" title="ScriptableObject"></a>ScriptableObject</h3><p>这个类看似很简单，但是第一次使用却花费了我很长时间来与其搏斗。这个类主要用来进行数据交互，它不需要挂在 GameObject 上，可以作为单独的数据存储来使用。在写编辑器扩展的时候使用它，有不少地方需要注意。</p>
-<h4 id="ScriptableObject-与-Asset"><a href="#ScriptableObject-与-Asset" class="headerlink" title="ScriptableObject 与 Asset"></a>ScriptableObject 与 Asset</h4><p>ScriptableObject 可以保存为 Asset，而且实际使用时发现，如果你不保存成 Asset，相关的引用就会在某些时候变为空。例如使用 ScriptableObject.CreateInstance 创建 一个 ScriptableObject 后，把它保存在容器里，然后函数结束。当你下次再用，就会发现这个引用变为 null 了。如果 ScriptableObject.CreateInstance 之后把这个 ScriptableObject 保存为 Asset，则没有问题。</p>
-<h4 id="删除-ScriptablObject-Asset"><a href="#删除-ScriptablObject-Asset" class="headerlink" title="删除 ScriptablObject Asset"></a>删除 ScriptablObject Asset</h4><p>如果使用诸如 AssetDatabase.LoadAsset&lt;&gt; 之类的函数把 ScriptableObject Asset 加载进来，然后保存在一个 MonoBehaviour 的变量里，当你删除这个 Asset 时，这个变量也为空了。也就是说，如果是直接加载这个 ScriptableObject Asset，当 Asset 被删除，加载进来的对象也没了<strong>（我原本以为挂在物体上的数据还会保留 ）</strong>。</p>
-<p>这个不注意可能会有一些致命的问题，例如你有个 ScriptableObject Asset，里面可能还有很多子 ScriptableObject Asset，策划想要用你的编辑器继续做上次没完成的工作，于是把上次保存好的 ScriptableObject Asset 加载进来进行操作，操作完毕后进行保存，可能会直接选择上次的路径，代码里可能会使用 AssetDatabase.CreateAsset  等方法，这实际上会覆盖原先的资源，也就是说之前的资源被删掉了。这时问题就来了，资源被删除后，Scene 中的数据也没了，这时保存代码执行，自然什么也保存不到。</p>
-<p>解决方案是加载后使用 Instantiate&lt;&gt; 去复制出一个 ScriptableObject，之后都操作这个复制出来的，或者干脆用 ScriptableObject.CreateInstance 创建一个新的（要注意上面提到的问题，最好创建完后立即使用或者挂在物体上）。</p>
-<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>保存数据的时候，尽可能不要用枚举作为 key ，因为一旦枚举因为一些原因，数值有变化，数据可能取不出来。可以考虑转成字符串。参考了下 C# 的源码，枚举在进行 GetHashCode 的时候，貌似是用它的数值进行操作的。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这次暂时写这么多，希望不要有第二篇。以上如果有朋友知道更准确的原因，可以留言。感谢大家阅读。</p>
-
-          
+          <p><strong>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。</strong></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/26/Unity 编辑器扩展踩坑记（一）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
