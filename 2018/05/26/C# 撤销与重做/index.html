@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Gamma Gamma校正 图形 游戏开发," />
+  <meta name="keywords" content="Unity 编辑器扩展 游戏开发 Unity序列化," />
 
 
 
@@ -82,19 +82,17 @@
 
 
 <meta name="description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
-<meta name="keywords" content="Gamma Gamma校正 图形 游戏开发">
+<meta name="keywords" content="Unity 编辑器扩展 游戏开发 Unity序列化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对 Gamma 校正的个人理解">
-<meta property="og:url" content="http://windsmoon.com/2018/02/24/对-Gamma-校正的个人理解/index.html">
+<meta property="og:title" content="C# 撤销与重做">
+<meta property="og:url" content="http://windsmoon.com/2018/05/26/C# 撤销与重做/index.html">
 <meta property="og:site_name" content="windsmoon 的游戏相关">
 <meta property="og:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/Gamma_Correction_curve.png">
-<meta property="og:updated_time" content="2018-05-08T03:06:34.000Z">
+<meta property="og:updated_time" content="2018-12-09T16:03:59.791Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对 Gamma 校正的个人理解">
+<meta name="twitter:title" content="C# 撤销与重做">
 <meta name="twitter:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
-<meta name="twitter:image" content="http://oxm0iiq5n.bkt.clouddn.com/Gamma_Correction_curve.png">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://windsmoon.com/2018/02/24/对-Gamma-校正的个人理解/"/>
+  <link rel="canonical" href="http://windsmoon.com/2018/05/26/C# 撤销与重做/"/>
 
 
 
 
 
-  <title>对 Gamma 校正的个人理解 | windsmoon 的游戏相关</title>
+  <title>C# 撤销与重做 | windsmoon 的游戏相关</title>
   
 
 
@@ -311,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://windsmoon.com/2018/02/24/对-Gamma-校正的个人理解/">
+    <link itemprop="mainEntityOfPage" href="http://windsmoon.com/2018/05/26/C# 撤销与重做/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="windsmoon">
@@ -328,7 +326,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">对 Gamma 校正的个人理解</h1>
+          <h1 class="post-title" itemprop="name headline">C# 撤销与重做</h1>
         
 
         <div class="post-meta">
@@ -340,8 +338,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T19:08:27+08:00">
-                2018-02-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-26T19:25:13+08:00">
+                2018-05-26
               </time>
             
 
@@ -363,8 +361,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图形/" itemprop="url" rel="index">
-                    <span itemprop="name">图形</span>
+                  <a href="/categories/Unity/" itemprop="url" rel="index">
+                    <span itemprop="name">Unity</span>
                   </a>
                 </span>
 
@@ -380,7 +378,7 @@
 
           
           
-             <span id="/2018/02/24/对-Gamma-校正的个人理解/" class="leancloud_visitors" data-flag-title="对 Gamma 校正的个人理解">
+             <span id="/2018/05/26/C# 撤销与重做/" class="leancloud_visitors" data-flag-title="C# 撤销与重做">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -413,54 +411,38 @@
       
         <p><strong>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。</strong></p>
 <a id="more"></a>
-<h2 id="为什么要写这篇文章"><a href="#为什么要写这篇文章" class="headerlink" title="为什么要写这篇文章"></a>为什么要写这篇文章</h2><p>Gamma 校正，看起来似乎是一件很简单的事情，做一次幂运算就可以了，但是如果深究的话，就会发现 Gamma 校正是个有点容易让人混乱的东西，每个人的解释可能都有一些不一样。最主要的是，Gamma 值在不止一个地方会用到，而这些地方应用的时候还或多或少有一些关联，所以深究 Gamma 校正的时候，非让容易令人感到困惑。我在读了一些资料，自己进行了一番理解之后，打算写一篇文章<strong>记录和分享</strong>一下自己的所得。</p>
-<h2 id="Gamma-是什么"><a href="#Gamma-是什么" class="headerlink" title="Gamma 是什么"></a>Gamma 是什么</h2><h3 id="物理亮度"><a href="#物理亮度" class="headerlink" title="物理亮度"></a>物理亮度</h3><p>物理亮度，就是真实世界中的亮度，可以认为是由光子数量来决定的，并且亮度与光子数量成线性关系，也就是说物理亮度存在于一个线性的空间中，物理亮度每提升 0.1，亮度的增加都是相同的。先说明这一点也是为了避免读者在后面的文字中对提到的物理亮度与其他东西感到混淆。</p>
-<h3 id="Gamma-的由来"><a href="#Gamma-的由来" class="headerlink" title="Gamma 的由来"></a>Gamma 的由来</h3><p>Gamma 的由来，说法是不统一的。</p>
-<p>部分人认为是由于早期 CRT 显示器的问题，即输出的亮度和输入的电压并非线性关系，而是<strong>近似</strong> 2.2 次幂的关系，导致进入人眼的亮度要比计算机上存储的亮度要低。例如，计算机上存储的亮度为 0.5，经过显示器调整后变为 0.5 的 2.2 次幂，即 0.218。为了让进入人眼的亮度与计算机中存储的值相同，需要在显示器调整前将亮度变为自身的 1/2.2 次幂，即 0.73，这样在经过显示器的调整，进入人眼就是 0.5 了，也就是说，Gamma 校正可以补偿由于显示器造成的亮度下降。这里需要注意的是，2.2 这个值是一个近似值，或者可以说是一个标准，实际上可能会有不同，现在的显示器甚至可以调节。</p>
-<p>还有一种说法是，人眼对不同亮度的敏感程度是不同的，对暗部的敏感要高于亮部（这个是没错的）。而存储颜色的空间是有限的，例如常用的 RGBA32 格式，每个颜色通道都只有 8 位，只能存储 256 种亮度，所以基于人眼感知的原因，用更多的空间存储更多暗部的颜色是更合理的。人眼感知到的中间亮度值大概是 0.18，换算到 0.5 大约是 pow(0.18, 0.4042)，也就是说大约可以用 0.4042 这个指数（但是也有说通过人为测量，指数定到 0.45 的，这里不必纠结，因为本身就是近似值，每个人感知的也不一样），来计算亮度最终变换后的结果，以存储更多暗部的亮度值（后面会详细讲解为什么这么做可以存储更多暗部的亮度值）。当然显示的时候，依然需要把这个亮度再变换到幂运算之前的结果，以显然原本的颜色，不过实际上并不需要这么做，因为这里有一个美妙的巧合，那就是我们用来提高暗部存储范围的指数，恰好和测量出的显示器调整输出亮度的指数近似为倒数，也就是说，什么也不用做，显示出来的自然就是原本的颜色。</p>
-<p>以上就是 Gamma 的两个由来。第一个主要是由于显示器特性，所以我们需要提高 01 之间亮度，以达到让显示器输出原本的颜色；第二个是由于存储有限，所以要提高暗部的存储区域（其实也是提高了 01 之间的亮度），恰好又能利用显示其特性恢复成原本的颜色。</p>
-<p>实际上并不需要太关心哪种说法是真正的起源，其实这两种说法都是正确的，只需要明白 Gamma 是什么即可，可以通过一张图来直观的解释：</p>
-<p><img src="http://oxm0iiq5n.bkt.clouddn.com/Gamma_Correction_curve.png" alt="曲线图"></p>
-<p>横坐标为输入值，纵坐标为输出值，中间的点线是物理亮度值，也是线性空间中的值，下方的实线是经过显示器校正的曲线，而上方的虚线是我们提高亮度或者说增大暗部存储范围后的曲线。</p>
-<h3 id="提高暗部亮度值存储范围的原理"><a href="#提高暗部亮度值存储范围的原理" class="headerlink" title="提高暗部亮度值存储范围的原理"></a>提高暗部亮度值存储范围的原理</h3><p>sRGB 空间有一个很重要的作用，就是我们用来存储颜色的媒介往往不够存储很多细节，比如常用的 RGBA32，每一个通道只有 8 位，即 0 到 255，只能存 256 个级别的亮度，这会丢失很多物理世界里的真实信息。那么如何在不增加存储范围的情况下，尽可能保留更多的物理信息呢？答案是，通过 Gamma 校正，把较暗的部分的存储范围放大，当然这会导致较亮的部分丢掉一些细节。这么做的依据是前面提到的人眼对暗部更敏感，所以应该用更多的范围去存储较暗的部分，而亮的部分，即使丢失掉一些细节也没关系，因为人眼可能并不会感知到。</p>
-<p>通过上面的图可以看到，在物理世界中，假设摄像机采样到的亮度为 0.218，如果就这么直接存储，那么采样的所有 0.218 以下的亮度都只能保存在 0.218 这个值以下，换成 8 位二进制表示只有 256 乘 0.218 等于 55 个级别。而 0.782 到 1 的值直接保存的话，也是 55 个级别，这样就造成了浪费，因为我们对 0 到 0.218 这个范围的敏感程度要大于 0.782 到 1 这个范围，而这两个范围都用 55 个亮度级别去表示，这就会使得我们本来可以感觉的更多的暗部的细节，但现在感觉不到了。</p>
-<p>当我们将物理世界中采样的亮度变为它的 0.45 次幂，也就是上图中上方的虚线，情况就会不一样。0 到 0.218 这个范围会变为 0 到 0.5，也就是说我们可以用 128 个级别去存储 0 到 0.218 这个范围，这样我们可以感受到 128 个级别的亮度，而 0.782 到 1 经过 Gamma 校正后的范围是 0.9 到 1，也就是只有 26 个级别。这符合我们人眼的特性，前面提到过，人眼感知物理亮度在暗部更敏感。</p>
-<h3 id="现代显示器还需要-Gamma-校正吗"><a href="#现代显示器还需要-Gamma-校正吗" class="headerlink" title="现代显示器还需要 Gamma 校正吗"></a>现代显示器还需要 Gamma 校正吗</h3><p>前面提到，CRT 显示器会有这个问题，那么现代显示器呢？其实现代显示器就算没有 CRT 这个问题，也会保留这个特性，原因可能是要兼容老的 CRT 显示器，反正就这么一直保留下来了。</p>
-<h2 id="线性空间和-sRGB-空间"><a href="#线性空间和-sRGB-空间" class="headerlink" title="线性空间和 sRGB 空间"></a>线性空间和 sRGB 空间</h2><p>Gamma 校正涉及到两个颜色空间，即线性空间和 sRGB 空间。</p>
-<h3 id="线性空间"><a href="#线性空间" class="headerlink" title="线性空间"></a>线性空间</h3><p>线性空间就是上图中中间的直线，而这条直线也是物理世界中的亮度值变化。</p>
-<h3 id="sRGB-空间"><a href="#sRGB-空间" class="headerlink" title="sRGB 空间"></a>sRGB 空间</h3><p>sRGB（standard RGB）是微软和惠普一起定制的颜色格式，在 sRGB 格式下，Gamma 值为 2.2，对应上图中上方的虚线。具体的 sRGB 和 线性空间转换的公式为：</p>
-<script type="math/tex; mode=display">
-sRGB(x) = 
-    \begin{cases}
-    12.92 x, & x <= 0.0031308 \\[2ex]
-    1.055 x ^ {1/2.4} - 0.055, & x > 0.0031308
-    \end{cases}\\[2ex]
-    x \; 为\text{线性空间中的颜色}\\[4ex]
-    linear(x) = 
-    \begin{cases}
-    \frac {x} {12.9}, & x <= 0.04045 \\[2ex]
-    (\frac{x + 0.055} {1.055}) ^ {2.4}, & x > 0.04045
-    \end{cases}\\[2ex]
-    x \; 为\text{sRGB空间中的颜色}</script><p>但一般我们自己计算的时候，都会直接用简化形式，即变为 2.2 次幂 或者 1/2.2 次幂。</p>
-<h3 id="颜色空间的应用"><a href="#颜色空间的应用" class="headerlink" title="颜色空间的应用"></a>颜色空间的应用</h3><p>Gamma 校正除了可以补偿亮度的损失之外，它在图形学中一个非常重要的作用是，它使得我们在计算光照的时候使用的数据是正确的。</p>
-<p><strong>通常情况下</strong>，设计师制作好的图片一般都是基于自己观察到的，也就是基于物理世界的亮度值，因为有显示器调节降低亮度的缘故，实际上在计算机中存储的是观察到的亮度值的 0.45 次幂（以下 Gamma 值都算作 2.2， 1 / 2.2 约等于 0.45），因为物理世界是线性空间的，所以这种情况下计算机中存储的值就是 sRGB 空间。如果用 sRGB 空间的值计算光照，则光照算法实际上是有些问题的。</p>
-<p>举个例子，设计师制作了一张亮度值为 0.5 的图（0.5 指的是计算机中存储的原图亮度，也就是 sRGB 空间），经过显示器调解后，亮度变为 0.218。这时如果使用名为“将亮度变为原来的 2 倍”的算法时，如果直接将计算机中的 0.5 乘上 2 ，即为 1，再经过显示器调解，输出出来的亮度值还是 1 （因为是 1 的 2.2 次幂）。从 0.218 到 1，亮度变为之前的 4 倍多，这并不是我们预期的（注意我并没有说这样的效果一定不好，只能说不是我们预期的）。所以我们需要先把计算机中的亮度值还原成线性空间的，也就是将 0.5 变换为线性空间的值 0.218，再乘 2 变为 0.436，此时依然是线性空间中。不过这时候不能直接输出，因为显示器会把 sRGB 的值变换到线性空间，如果计算机中存储的是线性空间的值，那么把线性空间的值再进行一次变换，就是错误的，所以我们需要再把 0.436 这个线性空间的值再重新变换到 sRGB 空间，即 pow(0.436, 0.45) 约等于 0.688，最后再经过显示器的调解后，变为 pow(0.688, 2.2) 约等于 0.439，这样观察到的物理世界亮度基本就是原来的 2 倍了（原来的物理世界中的亮度为 0.218）。</p>
-<h3 id="颜色空间对游戏开发的影响"><a href="#颜色空间对游戏开发的影响" class="headerlink" title="颜色空间对游戏开发的影响"></a>颜色空间对游戏开发的影响</h3><p>设计师在制作纹理的时候，最方便的方法自然是自己看到什么就是什么，也就是上面说的 sRGB 空间。而如果因为一些原因，设计师直接出了一张线性空间的图，那么在计算时不需要进行转换，但是输出的时候，需要进行一次 Gamma 校正，转换到 sRGB 空间，这样输出到物理世界的值就是计算机纹理中存储的线性空间的值了。</p>
-<p>颜色空间也会影响纹理的采样，颜色的 blend 等，这里不多讲了，网上的资料很多，本文重点还是想讲解 Gamma 校正的一些相关原理。</p>
-<h3 id="关于纹理颜色空间的选择"><a href="#关于纹理颜色空间的选择" class="headerlink" title="关于纹理颜色空间的选择"></a>关于纹理颜色空间的选择</h3><p>那什么时候需要线性空间呢，什么时候需要 sRGB 空间呢？</p>
-<p>我个人认为的是，表示颜色的纹理应该选择在 sRGB 空间，因为这可以改变不同明暗的颜色的存储范围，使其更符合人眼特性。而一些表示纯数值的纹理，就直接选择线性空间的值即可，不需要再换转了，因为他们本身就是用于计算的。比如一张表示 Phong 光照模型中物体镜面反射程度的镜面反射贴图，就直接选择线性空间的值即可，采样后就直接可以参与计算了。<strong>但这里说线性空间不一定准确</strong>，因为设计师在制作镜面反射贴图的时候，可能也是直接基于自己观察到的亮度值，所以这个值也可以说是 sRGB 空间的。这个可能还是需要注意的，因为不同引擎可能对这个有不同的叫法，读者重点掌握这个值可以采样出来直接用于线性空间的光照计算即可。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章的目的主要是梳理 Gamma 校正到底是什么，实际使用时，Gamma 校正还有一些地方需要注意，尤其是在使用纹理和进行 blend 的时候，有机会我也会进行一些探讨。</p>
-<p>以上关于 Gamma 校正相关的解释都是我个人的理解，如果有不对的地方，还请指出。</p>
-<p>感谢阅读。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://learnopengl.com/Advanced-Lighting/Gamma-Correction" target="_blank" rel="external">Learn OpenGL — Gamma Correction</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Gamma_correction" target="_blank" rel="external">wikipedia — Gamma correction</a></li>
-<li><a href="https://en.wikipedia.org/wiki/SRGB" target="_blank" rel="external">wikipedia — sRGB</a></li>
-<li><a href="https://www.cnblogs.com/TracePlus/p/4168447.html" target="_blank" rel="external">Gamma校正与线性空间</a></li>
-<li><a href="https://photo.stackexchange.com/questions/53725/what-is-the-purpose-of-gamma-correction-in-todays-screens-and-how-does-it-relat" target="_blank" rel="external">What is the purpose of gamma correction in today’s screens and how does it relate to graphics and photography?</a></li>
-<li><a href="https://www.zhihu.com/question/27467127" target="_blank" rel="external">知乎 — 色彩校正中的 gamma 值是什么？</a></li>
-<li><a href="https://blog.csdn.net/candycat1992/article/details/46228771" target="_blank" rel="external">我理解的伽马校正</a></li>
+<p><a href="http://windsmoon.com/2018/05/26/Unity%20%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95%E8%B8%A9%E5%9D%91%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">原文地址</a></p>
+<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>最近两三周在写 Unity 的编辑器扩展，主要是给项目开发一个地图编辑器，期间遇到了一些坑，所以有了开个系列记录一下的想法。这是第一篇，我希望不要再有第二篇了。</p>
+<p>我目前使用的版本是 Unity 2017.1.3.f1。</p>
+<h2 id="问题与解决方案"><a href="#问题与解决方案" class="headerlink" title="问题与解决方案"></a>问题与解决方案</h2><h3 id="数据序列化"><a href="#数据序列化" class="headerlink" title="数据序列化"></a>数据序列化</h3><p>写编辑器扩展，如果需要保存数据到文件，序列化数据是必不可少的。我目前用过两个方案，一个是利用 Unity 自身的序列化系统配合 ScriptableObject，一个是利用 C# 的序列化 API ，这两种方式各有优劣。</p>
+<h4 id="C-序列化"><a href="#C-序列化" class="headerlink" title="C# 序列化"></a>C# 序列化</h4><p>C# 序列化方便快捷，但是在 Unity 中不一定好用。如果需要用 C# 的序列化，class 或者 struct 必须加上 Serializable 这个 Attribute，然而可能大部分你想序列化的 C# 内置 class 或者 struct，都没加这个 Attribute，例如 VectorX 系列，还有 ScriptableObject。之前需要用 C# 序列化的时候，Vector2 和 Vector3 等我都自己实现了一个可序列化版本。</p>
+<p>C# 序列化在 Unity 中还有一个问题，就是不如内置序列化系统方便，因为 Unity 的序列化几乎每时每刻都在进行，虽然有相应接口，但你必须确保在必须要序列化的时机进行序列化，以免数据被清空。</p>
+<h4 id="Unity-内置序列化"><a href="#Unity-内置序列化" class="headerlink" title="Unity 内置序列化"></a>Unity 内置序列化</h4><p>Unity 内置序列化系统以及一些配套组件（例如 ScriptableObject 等）在 Unity 中能保证序列化和反序列化的数据正确性，并且几乎不需要关心序列化的时机，只需要指明哪些数据需要序列化即可。一般来说，在会被 Unity 进行序列化的内置类中，public 字段和被 SerializeField 这个 Attribute 修饰的字段会被序列化，例如 MonoBehaviour 中的字段，ScriptableObject 也是，其他自定义类我没验证过，但是 private 的我都加了 SerializeField 这个标签没有问题，public 的也可以正确序列化。</p>
+<p><strong>但是不是所有类型都能序列化的！</strong>在常用的需要序列化的类中，Dictionary 和二维数组以及其他有嵌套关系的容器（目前看来是这样，不能保证所有这种容器一定不能被序列化）不能被序列化。好在都有解决办法。</p>
+<h5 id="序列化-Dictionary"><a href="#序列化-Dictionary" class="headerlink" title="序列化 Dictionary"></a>序列化 Dictionary</h5><p>虽然 Dictionary 不能被 Unity 序列化，但是 List 是可以的，我们可以把 Dictionary 的 keys 和 values 保存在两个 List 里，这样就可以序列化和反序列化字典了。<strong>注意我不是说要用两个 List 完全代替 Dictionary 这个数据结构</strong>，这样就失去了 Dictionary 的数据结构特性了，我们只需要在 Unity 进行序列化和反序列化的时候把 Dictionary 挪到两个 List 里和从 两个 List 里复原 Dictionary 就行了。Unity 进行序列化和反序列化的时机是可以知道的，关键在于一个 interface。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">using UnityEngine.Scripting;</div><div class="line"></div><div class="line">namespace UnityEngine</div><div class="line">&#123;</div><div class="line">	[RequiredByNativeCode]</div><div class="line">	public interface ISerializationCallbackReceiver</div><div class="line">	&#123;</div><div class="line">		/// &lt;summary&gt;</div><div class="line">		///   &lt;para&gt;Implement this method to receive a callback before Unity serializes your object.&lt;/para&gt;</div><div class="line">		/// &lt;/summary&gt;</div><div class="line">		void OnBeforeSerialize ();</div><div class="line"></div><div class="line">		/// &lt;summary&gt;</div><div class="line">		///   &lt;para&gt;Implement this method to receive a callback after Unity deserializes your object.&lt;/para&gt;</div><div class="line">		/// &lt;/summary&gt;</div><div class="line">		void OnAfterDeserialize ();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 这个 interface 有两个方法，OnBeforeSerialize 在将要序列化的时候执行，OnAfterDeserialize 在反序列化完成后执行。</p>
+<p>所以我们只需要在 OnBeforeSerialize 中把 keys 和 values 保存到两个 List 里，在 OnAfterDeserialize 中根据两个 List 中的数据重建一个 Dictionary 就行了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public void OnBeforeSerialize()</div><div class="line">&#123;</div><div class="line">    keyList.Clear();</div><div class="line">    valueList.Clear();</div><div class="line"></div><div class="line">    foreach (var pair in dataDict)</div><div class="line">    &#123;</div><div class="line">        keyList.Add(pair.Key);</div><div class="line">        valueList.Add(pair.Value);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public void OnAfterDeserialize()</div><div class="line">&#123;</div><div class="line">    dataDict.Clear();</div><div class="line"></div><div class="line">    for (int i = 0; i &lt; keyList.Count; ++i)</div><div class="line">    &#123;</div><div class="line">        dataDict[keyList[i]] = valueList[i];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>要注意的是这个 interface 目前不支持 struct 。</p>
+<h5 id="嵌套容器"><a href="#嵌套容器" class="headerlink" title="嵌套容器"></a>嵌套容器</h5><p>如果是类似这样的数据，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Dictionary&lt;int, X[]&gt;</div></pre></td></tr></table></figure>
+<p>则里面的 X[] 是不能被序列化的，但是如果你将 X[] 写在一个类里。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class XWrapper</div><div class="line">&#123;</div><div class="line">    [SerializeField]</div><div class="line">    private X[] Xs;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>外部容器保存这个 XWrapper ，就可以正确序列化数组中的数据了。所以如果你在使用嵌套容器的时候出现问题，可以考虑这种方法。</p>
+<h3 id="内存数据清空"><a href="#内存数据清空" class="headerlink" title="内存数据清空"></a>内存数据清空</h3><p>写编辑器代码的时候，会有一些情况导致内存中的数据被清空，我判断内存数据被清空重置的方式是观察静态构造函数在控制台的输出。目前我遇到的情况有：</p>
+<ul>
+<li>编译代码：代码修改后 Unity 会进行重新编译，并把内存清空重置，重新加载代码。例如一个没有被序列化的变量被赋值以后，再修改代码，编译完成后这个变量的值就为  null 或者默认的值类型数据了。我在某个类的静态构造函数内输出一段字符串到控制台，当重新编译代码的时候，访问这个类，控制台会进行输出，但之后再次访问就不会，这说明代码没有被重新加载，但是当更改代码并进行编译后，第一次访问这个类依然会有输出，这足以说明问题。这里有一个需要注意的点是，修改代码后，并不会立即进行编译。一般来说，会等一会儿才开始编译，且代码编译的时候会有卡顿，并且编译完成后控制台里也会输出各种警告（如果有的话），这时候就说明编译完成了。也就是说你必须等待一会儿才行，如果你改完代码后立即回到编辑器里执行你写的代码，这时候实际上还是之前的代码。有一个小技巧是可以改完代码点运行，运行前会进行代码编译，运行开始就说明是新的代码了，这样做的好处是你可以确保代码是新的代码，<strong>但必须注意运行也会把没序列化的数据清除</strong>。</li>
+<li>运行：点击运行按钮的时候，会进行数据的重置，我在某个 MonoBehaviour 的 Awake 方法里访问上面提到的类，每次都会有输出。但是运行还需要注意的是，Unity 点击运行会把没有进行序列化的数据丢掉，这时退出运行，之前在编辑器状态下设置好的数据就没了。序列化的数据，这里是指 MonoBehaviour 中访问修饰符为 public 的变量和拥有 SerializeField 这个 Attribute 的变量。</li>
 </ul>
+<p><strong>退出运行不会进行内存重置，但很重要</strong> ，因为退出也相当于加载了场景，会执行 Awake 等相关函数，如果你有一些初始化函数在这时候执行，你需要注意它是否会影响到你。</p>
+<h3 id="ScriptableObject"><a href="#ScriptableObject" class="headerlink" title="ScriptableObject"></a>ScriptableObject</h3><p>这个类看似很简单，但是第一次使用却花费了我很长时间来与其搏斗。这个类主要用来进行数据交互，它不需要挂在 GameObject 上，可以作为单独的数据存储来使用。在写编辑器扩展的时候使用它，有不少地方需要注意。</p>
+<h4 id="ScriptableObject-与-Asset"><a href="#ScriptableObject-与-Asset" class="headerlink" title="ScriptableObject 与 Asset"></a>ScriptableObject 与 Asset</h4><p>ScriptableObject 可以保存为 Asset，而且实际使用时发现，如果你不保存成 Asset，相关的引用就会在某些时候变为空。例如使用 ScriptableObject.CreateInstance 创建 一个 ScriptableObject 后，把它保存在容器里，然后函数结束。当你下次再用，就会发现这个引用变为 null 了。如果 ScriptableObject.CreateInstance 之后把这个 ScriptableObject 保存为 Asset，则没有问题。</p>
+<h4 id="删除-ScriptablObject-Asset"><a href="#删除-ScriptablObject-Asset" class="headerlink" title="删除 ScriptablObject Asset"></a>删除 ScriptablObject Asset</h4><p>如果使用诸如 AssetDatabase.LoadAsset&lt;&gt; 之类的函数把 ScriptableObject Asset 加载进来，然后保存在一个 MonoBehaviour 的变量里，当你删除这个 Asset 时，这个变量也为空了。也就是说，如果是直接加载这个 ScriptableObject Asset，当 Asset 被删除，加载进来的对象也没了<strong>（我原本以为挂在物体上的数据还会保留 ）</strong>。</p>
+<p>这个不注意可能会有一些致命的问题，例如你有个 ScriptableObject Asset，里面可能还有很多子 ScriptableObject Asset，策划想要用你的编辑器继续做上次没完成的工作，于是把上次保存好的 ScriptableObject Asset 加载进来进行操作，操作完毕后进行保存，可能会直接选择上次的路径，代码里可能会使用 AssetDatabase.CreateAsset  等方法，这实际上会覆盖原先的资源，也就是说之前的资源被删掉了。这时问题就来了，资源被删除后，Scene 中的数据也没了，这时保存代码执行，自然什么也保存不到。</p>
+<p>解决方案是加载后使用 Instantiate&lt;&gt; 去复制出一个 ScriptableObject，之后都操作这个复制出来的，或者干脆用 ScriptableObject.CreateInstance 创建一个新的（要注意上面提到的问题，最好创建完后立即使用或者挂在物体上）。</p>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>保存数据的时候，尽可能不要用枚举作为 key ，因为一旦枚举因为一些原因，数值有变化，数据可能取不出来。可以考虑转成字符串。参考了下 C# 的源码，枚举在进行 GetHashCode 的时候，貌似是用它的数值进行操作的。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这次暂时写这么多，再次希望不要有第二篇。以上如果有朋友知道更准确的原因，可以留言。感谢大家阅读。</p>
 
       
     </div>
@@ -507,7 +489,7 @@ sRGB(x) =
       
         <div class="post-tags">
           
-            <a href="/tags/Gamma-Gamma校正-图形-游戏开发/" rel="tag"># Gamma Gamma校正 图形 游戏开发</a>
+            <a href="/tags/Unity-编辑器扩展-游戏开发-Unity序列化/" rel="tag"># Unity 编辑器扩展 游戏开发 Unity序列化</a>
           
         </div>
       
@@ -520,8 +502,8 @@ sRGB(x) =
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/29/Global_Game_Jam 经历分享/" rel="next" title="Global Game Jam 2018 经历分享">
-                <i class="fa fa-chevron-left"></i> Global Game Jam 2018 经历分享
+              <a href="/2018/05/26/Unity 编辑器扩展踩坑记（一）/" rel="next" title="Unity 编辑器扩展和序列化踩坑记（一）">
+                <i class="fa fa-chevron-left"></i> Unity 编辑器扩展和序列化踩坑记（一）
               </a>
             
           </div>
@@ -530,8 +512,8 @@ sRGB(x) =
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/30/从纹理中生成法线贴图/" rel="prev" title="从纹理中生成法线贴图">
-                从纹理中生成法线贴图 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/06/C# 实现撤销与重做/" rel="prev" title="C# 实现撤销与重做">
+                C# 实现撤销与重做 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -734,7 +716,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要写这篇文章"><span class="nav-number">1.</span> <span class="nav-text">为什么要写这篇文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gamma-是什么"><span class="nav-number">2.</span> <span class="nav-text">Gamma 是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#物理亮度"><span class="nav-number">2.1.</span> <span class="nav-text">物理亮度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gamma-的由来"><span class="nav-number">2.2.</span> <span class="nav-text">Gamma 的由来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提高暗部亮度值存储范围的原理"><span class="nav-number">2.3.</span> <span class="nav-text">提高暗部亮度值存储范围的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现代显示器还需要-Gamma-校正吗"><span class="nav-number">2.4.</span> <span class="nav-text">现代显示器还需要 Gamma 校正吗</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性空间和-sRGB-空间"><span class="nav-number">3.</span> <span class="nav-text">线性空间和 sRGB 空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性空间"><span class="nav-number">3.1.</span> <span class="nav-text">线性空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sRGB-空间"><span class="nav-number">3.2.</span> <span class="nav-text">sRGB 空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色空间的应用"><span class="nav-number">3.3.</span> <span class="nav-text">颜色空间的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色空间对游戏开发的影响"><span class="nav-number">3.4.</span> <span class="nav-text">颜色空间对游戏开发的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于纹理颜色空间的选择"><span class="nav-number">3.5.</span> <span class="nav-text">关于纹理颜色空间的选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概要"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题与解决方案"><span class="nav-number">2.</span> <span class="nav-text">问题与解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据序列化"><span class="nav-number">2.1.</span> <span class="nav-text">数据序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#C-序列化"><span class="nav-number">2.1.1.</span> <span class="nav-text">C# 序列化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unity-内置序列化"><span class="nav-number">2.1.2.</span> <span class="nav-text">Unity 内置序列化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#序列化-Dictionary"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">序列化 Dictionary</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#嵌套容器"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">嵌套容器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存数据清空"><span class="nav-number">2.2.</span> <span class="nav-text">内存数据清空</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ScriptableObject"><span class="nav-number">2.3.</span> <span class="nav-text">ScriptableObject</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ScriptableObject-与-Asset"><span class="nav-number">2.3.1.</span> <span class="nav-text">ScriptableObject 与 Asset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除-ScriptablObject-Asset"><span class="nav-number">2.3.2.</span> <span class="nav-text">删除 ScriptablObject Asset</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举"><span class="nav-number">2.4.</span> <span class="nav-text">枚举</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol></div>
             
 
           </div>
