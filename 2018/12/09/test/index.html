@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Gamma Gamma校正 图形 游戏开发," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -81,20 +81,17 @@
 
 
 
-<meta name="description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
-<meta name="keywords" content="Gamma Gamma校正 图形 游戏开发">
+<meta name="description" content="游戏相关的一切技术和设计 Technology and design for game">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对 Gamma 校正的个人理解">
-<meta property="og:url" content="http://windsmoon.com/2018/02/24/对-Gamma-校正的个人理解/index.html">
+<meta property="og:title" content="test">
+<meta property="og:url" content="http://windsmoon.com/2018/12/09/test/index.html">
 <meta property="og:site_name" content="windsmoon 的游戏相关">
-<meta property="og:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
+<meta property="og:description" content="游戏相关的一切技术和设计 Technology and design for game">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/Gamma_Correction_curve.png">
-<meta property="og:updated_time" content="2018-05-08T03:06:34.000Z">
+<meta property="og:updated_time" content="2018-12-09T15:58:07.881Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对 Gamma 校正的个人理解">
-<meta name="twitter:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
-<meta name="twitter:image" content="http://oxm0iiq5n.bkt.clouddn.com/Gamma_Correction_curve.png">
+<meta name="twitter:title" content="test">
+<meta name="twitter:description" content="游戏相关的一切技术和设计 Technology and design for game">
 
 
 
@@ -124,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://windsmoon.com/2018/02/24/对-Gamma-校正的个人理解/"/>
+  <link rel="canonical" href="http://windsmoon.com/2018/12/09/test/"/>
 
 
 
 
 
-  <title>对 Gamma 校正的个人理解 | windsmoon 的游戏相关</title>
+  <title>test | windsmoon 的游戏相关</title>
   
 
 
@@ -311,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://windsmoon.com/2018/02/24/对-Gamma-校正的个人理解/">
+    <link itemprop="mainEntityOfPage" href="http://windsmoon.com/2018/12/09/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="windsmoon">
@@ -328,7 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">对 Gamma 校正的个人理解</h1>
+          <h1 class="post-title" itemprop="name headline">test</h1>
         
 
         <div class="post-meta">
@@ -340,8 +337,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T19:08:27+08:00">
-                2018-02-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-09T23:58:07+08:00">
+                2018-12-09
               </time>
             
 
@@ -351,28 +348,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图形/" itemprop="url" rel="index">
-                    <span itemprop="name">图形</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -380,7 +355,7 @@
 
           
           
-             <span id="/2018/02/24/对-Gamma-校正的个人理解/" class="leancloud_visitors" data-flag-title="对 Gamma 校正的个人理解">
+             <span id="/2018/12/09/test/" class="leancloud_visitors" data-flag-title="test">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -411,57 +386,7 @@
       
 
       
-        <p><strong>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。</strong></p>
-<a id="more"></a>
-<h2 id="为什么要写这篇文章"><a href="#为什么要写这篇文章" class="headerlink" title="为什么要写这篇文章"></a>为什么要写这篇文章</h2><p>Gamma 校正，看起来似乎是一件很简单的事情，做一次幂运算就可以了，但是如果深究的话，就会发现 Gamma 校正是个有点容易让人混乱的东西，每个人的解释可能都有一些不一样。最主要的是，Gamma 值在不止一个地方会用到，而这些地方应用的时候还或多或少有一些关联，所以深究 Gamma 校正的时候，非让容易令人感到困惑。我在读了一些资料，自己进行了一番理解之后，打算写一篇文章<strong>记录和分享</strong>一下自己的所得。</p>
-<h2 id="Gamma-是什么"><a href="#Gamma-是什么" class="headerlink" title="Gamma 是什么"></a>Gamma 是什么</h2><h3 id="物理亮度"><a href="#物理亮度" class="headerlink" title="物理亮度"></a>物理亮度</h3><p>物理亮度，就是真实世界中的亮度，可以认为是由光子数量来决定的，并且亮度与光子数量成线性关系，也就是说物理亮度存在于一个线性的空间中，物理亮度每提升 0.1，亮度的增加都是相同的。先说明这一点也是为了避免读者在后面的文字中对提到的物理亮度与其他东西感到混淆。</p>
-<h3 id="Gamma-的由来"><a href="#Gamma-的由来" class="headerlink" title="Gamma 的由来"></a>Gamma 的由来</h3><p>Gamma 的由来，说法是不统一的。</p>
-<p>部分人认为是由于早期 CRT 显示器的问题，即输出的亮度和输入的电压并非线性关系，而是<strong>近似</strong> 2.2 次幂的关系，导致进入人眼的亮度要比计算机上存储的亮度要低。例如，计算机上存储的亮度为 0.5，经过显示器调整后变为 0.5 的 2.2 次幂，即 0.218。为了让进入人眼的亮度与计算机中存储的值相同，需要在显示器调整前将亮度变为自身的 1/2.2 次幂，即 0.73，这样在经过显示器的调整，进入人眼就是 0.5 了，也就是说，Gamma 校正可以补偿由于显示器造成的亮度下降。这里需要注意的是，2.2 这个值是一个近似值，或者可以说是一个标准，实际上可能会有不同，现在的显示器甚至可以调节。</p>
-<p>还有一种说法是，人眼对不同亮度的敏感程度是不同的，对暗部的敏感要高于亮部（这个是没错的）。而存储颜色的空间是有限的，例如常用的 RGBA32 格式，每个颜色通道都只有 8 位，只能存储 256 种亮度，所以基于人眼感知的原因，用更多的空间存储更多暗部的颜色是更合理的。人眼感知到的中间亮度值大概是 0.18，换算到 0.5 大约是 pow(0.18, 0.4042)，也就是说大约可以用 0.4042 这个指数（但是也有说通过人为测量，指数定到 0.45 的，这里不必纠结，因为本身就是近似值，每个人感知的也不一样），来计算亮度最终变换后的结果，以存储更多暗部的亮度值（后面会详细讲解为什么这么做可以存储更多暗部的亮度值）。当然显示的时候，依然需要把这个亮度再变换到幂运算之前的结果，以显然原本的颜色，不过实际上并不需要这么做，因为这里有一个美妙的巧合，那就是我们用来提高暗部存储范围的指数，恰好和测量出的显示器调整输出亮度的指数近似为倒数，也就是说，什么也不用做，显示出来的自然就是原本的颜色。</p>
-<p>以上就是 Gamma 的两个由来。第一个主要是由于显示器特性，所以我们需要提高 01 之间亮度，以达到让显示器输出原本的颜色；第二个是由于存储有限，所以要提高暗部的存储区域（其实也是提高了 01 之间的亮度），恰好又能利用显示其特性恢复成原本的颜色。</p>
-<p>实际上并不需要太关心哪种说法是真正的起源，其实这两种说法都是正确的，只需要明白 Gamma 是什么即可，可以通过一张图来直观的解释：</p>
-<p><img src="http://oxm0iiq5n.bkt.clouddn.com/Gamma_Correction_curve.png" alt="曲线图"></p>
-<p>横坐标为输入值，纵坐标为输出值，中间的点线是物理亮度值，也是线性空间中的值，下方的实线是经过显示器校正的曲线，而上方的虚线是我们提高亮度或者说增大暗部存储范围后的曲线。</p>
-<h3 id="提高暗部亮度值存储范围的原理"><a href="#提高暗部亮度值存储范围的原理" class="headerlink" title="提高暗部亮度值存储范围的原理"></a>提高暗部亮度值存储范围的原理</h3><p>sRGB 空间有一个很重要的作用，就是我们用来存储颜色的媒介往往不够存储很多细节，比如常用的 RGBA32，每一个通道只有 8 位，即 0 到 255，只能存 256 个级别的亮度，这会丢失很多物理世界里的真实信息。那么如何在不增加存储范围的情况下，尽可能保留更多的物理信息呢？答案是，通过 Gamma 校正，把较暗的部分的存储范围放大，当然这会导致较亮的部分丢掉一些细节。这么做的依据是前面提到的人眼对暗部更敏感，所以应该用更多的范围去存储较暗的部分，而亮的部分，即使丢失掉一些细节也没关系，因为人眼可能并不会感知到。</p>
-<p>通过上面的图可以看到，在物理世界中，假设摄像机采样到的亮度为 0.218，如果就这么直接存储，那么采样的所有 0.218 以下的亮度都只能保存在 0.218 这个值以下，换成 8 位二进制表示只有 256 乘 0.218 等于 55 个级别。而 0.782 到 1 的值直接保存的话，也是 55 个级别，这样就造成了浪费，因为我们对 0 到 0.218 这个范围的敏感程度要大于 0.782 到 1 这个范围，而这两个范围都用 55 个亮度级别去表示，这就会使得我们本来可以感觉的更多的暗部的细节，但现在感觉不到了。</p>
-<p>当我们将物理世界中采样的亮度变为它的 0.45 次幂，也就是上图中上方的虚线，情况就会不一样。0 到 0.218 这个范围会变为 0 到 0.5，也就是说我们可以用 128 个级别去存储 0 到 0.218 这个范围，这样我们可以感受到 128 个级别的亮度，而 0.782 到 1 经过 Gamma 校正后的范围是 0.9 到 1，也就是只有 26 个级别。这符合我们人眼的特性，前面提到过，人眼感知物理亮度在暗部更敏感。</p>
-<h3 id="现代显示器还需要-Gamma-校正吗"><a href="#现代显示器还需要-Gamma-校正吗" class="headerlink" title="现代显示器还需要 Gamma 校正吗"></a>现代显示器还需要 Gamma 校正吗</h3><p>前面提到，CRT 显示器会有这个问题，那么现代显示器呢？其实现代显示器就算没有 CRT 这个问题，也会保留这个特性，原因可能是要兼容老的 CRT 显示器，反正就这么一直保留下来了。</p>
-<h2 id="线性空间和-sRGB-空间"><a href="#线性空间和-sRGB-空间" class="headerlink" title="线性空间和 sRGB 空间"></a>线性空间和 sRGB 空间</h2><p>Gamma 校正涉及到两个颜色空间，即线性空间和 sRGB 空间。</p>
-<h3 id="线性空间"><a href="#线性空间" class="headerlink" title="线性空间"></a>线性空间</h3><p>线性空间就是上图中中间的直线，而这条直线也是物理世界中的亮度值变化。</p>
-<h3 id="sRGB-空间"><a href="#sRGB-空间" class="headerlink" title="sRGB 空间"></a>sRGB 空间</h3><p>sRGB（standard RGB）是微软和惠普一起定制的颜色格式，在 sRGB 格式下，Gamma 值为 2.2，对应上图中上方的虚线。具体的 sRGB 和 线性空间转换的公式为：</p>
-<script type="math/tex; mode=display">
-sRGB(x) = 
-    \begin{cases}
-    12.92 x, & x <= 0.0031308 \\[2ex]
-    1.055 x ^ {1/2.4} - 0.055, & x > 0.0031308
-    \end{cases}\\[2ex]
-    x \; 为\text{线性空间中的颜色}\\[4ex]
-    linear(x) = 
-    \begin{cases}
-    \frac {x} {12.9}, & x <= 0.04045 \\[2ex]
-    (\frac{x + 0.055} {1.055}) ^ {2.4}, & x > 0.04045
-    \end{cases}\\[2ex]
-    x \; 为\text{sRGB空间中的颜色}</script><p>但一般我们自己计算的时候，都会直接用简化形式，即变为 2.2 次幂 或者 1/2.2 次幂。</p>
-<h3 id="颜色空间的应用"><a href="#颜色空间的应用" class="headerlink" title="颜色空间的应用"></a>颜色空间的应用</h3><p>Gamma 校正除了可以补偿亮度的损失之外，它在图形学中一个非常重要的作用是，它使得我们在计算光照的时候使用的数据是正确的。</p>
-<p><strong>通常情况下</strong>，设计师制作好的图片一般都是基于自己观察到的，也就是基于物理世界的亮度值，因为有显示器调节降低亮度的缘故，实际上在计算机中存储的是观察到的亮度值的 0.45 次幂（以下 Gamma 值都算作 2.2， 1 / 2.2 约等于 0.45），因为物理世界是线性空间的，所以这种情况下计算机中存储的值就是 sRGB 空间。如果用 sRGB 空间的值计算光照，则光照算法实际上是有些问题的。</p>
-<p>举个例子，设计师制作了一张亮度值为 0.5 的图（0.5 指的是计算机中存储的原图亮度，也就是 sRGB 空间），经过显示器调解后，亮度变为 0.218。这时如果使用名为“将亮度变为原来的 2 倍”的算法时，如果直接将计算机中的 0.5 乘上 2 ，即为 1，再经过显示器调解，输出出来的亮度值还是 1 （因为是 1 的 2.2 次幂）。从 0.218 到 1，亮度变为之前的 4 倍多，这并不是我们预期的（注意我并没有说这样的效果一定不好，只能说不是我们预期的）。所以我们需要先把计算机中的亮度值还原成线性空间的，也就是将 0.5 变换为线性空间的值 0.218，再乘 2 变为 0.436，此时依然是线性空间中。不过这时候不能直接输出，因为显示器会把 sRGB 的值变换到线性空间，如果计算机中存储的是线性空间的值，那么把线性空间的值再进行一次变换，就是错误的，所以我们需要再把 0.436 这个线性空间的值再重新变换到 sRGB 空间，即 pow(0.436, 0.45) 约等于 0.688，最后再经过显示器的调解后，变为 pow(0.688, 2.2) 约等于 0.439，这样观察到的物理世界亮度基本就是原来的 2 倍了（原来的物理世界中的亮度为 0.218）。</p>
-<h3 id="颜色空间对游戏开发的影响"><a href="#颜色空间对游戏开发的影响" class="headerlink" title="颜色空间对游戏开发的影响"></a>颜色空间对游戏开发的影响</h3><p>设计师在制作纹理的时候，最方便的方法自然是自己看到什么就是什么，也就是上面说的 sRGB 空间。而如果因为一些原因，设计师直接出了一张线性空间的图，那么在计算时不需要进行转换，但是输出的时候，需要进行一次 Gamma 校正，转换到 sRGB 空间，这样输出到物理世界的值就是计算机纹理中存储的线性空间的值了。</p>
-<p>颜色空间也会影响纹理的采样，颜色的 blend 等，这里不多讲了，网上的资料很多，本文重点还是想讲解 Gamma 校正的一些相关原理。</p>
-<h3 id="关于纹理颜色空间的选择"><a href="#关于纹理颜色空间的选择" class="headerlink" title="关于纹理颜色空间的选择"></a>关于纹理颜色空间的选择</h3><p>那什么时候需要线性空间呢，什么时候需要 sRGB 空间呢？</p>
-<p>我个人认为的是，表示颜色的纹理应该选择在 sRGB 空间，因为这可以改变不同明暗的颜色的存储范围，使其更符合人眼特性。而一些表示纯数值的纹理，就直接选择线性空间的值即可，不需要再换转了，因为他们本身就是用于计算的。比如一张表示 Phong 光照模型中物体镜面反射程度的镜面反射贴图，就直接选择线性空间的值即可，采样后就直接可以参与计算了。<strong>但这里说线性空间不一定准确</strong>，因为设计师在制作镜面反射贴图的时候，可能也是直接基于自己观察到的亮度值，所以这个值也可以说是 sRGB 空间的。这个可能还是需要注意的，因为不同引擎可能对这个有不同的叫法，读者重点掌握这个值可以采样出来直接用于线性空间的光照计算即可。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章的目的主要是梳理 Gamma 校正到底是什么，实际使用时，Gamma 校正还有一些地方需要注意，尤其是在使用纹理和进行 blend 的时候，有机会我也会进行一些探讨。</p>
-<p>以上关于 Gamma 校正相关的解释都是我个人的理解，如果有不对的地方，还请指出。</p>
-<p>感谢阅读。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://learnopengl.com/Advanced-Lighting/Gamma-Correction" target="_blank" rel="external">Learn OpenGL — Gamma Correction</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Gamma_correction" target="_blank" rel="external">wikipedia — Gamma correction</a></li>
-<li><a href="https://en.wikipedia.org/wiki/SRGB" target="_blank" rel="external">wikipedia — sRGB</a></li>
-<li><a href="https://www.cnblogs.com/TracePlus/p/4168447.html" target="_blank" rel="external">Gamma校正与线性空间</a></li>
-<li><a href="https://photo.stackexchange.com/questions/53725/what-is-the-purpose-of-gamma-correction-in-todays-screens-and-how-does-it-relat" target="_blank" rel="external">What is the purpose of gamma correction in today’s screens and how does it relate to graphics and photography?</a></li>
-<li><a href="https://www.zhihu.com/question/27467127" target="_blank" rel="external">知乎 — 色彩校正中的 gamma 值是什么？</a></li>
-<li><a href="https://blog.csdn.net/candycat1992/article/details/46228771" target="_blank" rel="external">我理解的伽马校正</a></li>
-</ul>
-
+        
       
     </div>
     
@@ -505,12 +430,6 @@ sRGB(x) =
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Gamma-Gamma校正-图形-游戏开发/" rel="tag"># Gamma Gamma校正 图形 游戏开发</a>
-          
-        </div>
-      
 
       
       
@@ -520,8 +439,8 @@ sRGB(x) =
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/29/Global_Game_Jam 经历分享/" rel="next" title="Global Game Jam 2018 经历分享">
-                <i class="fa fa-chevron-left"></i> Global Game Jam 2018 经历分享
+              <a href="/2018/12/06/C# 实现撤销与重做/" rel="next" title="C# 实现撤销与重做">
+                <i class="fa fa-chevron-left"></i> C# 实现撤销与重做
               </a>
             
           </div>
@@ -529,10 +448,6 @@ sRGB(x) =
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/30/从纹理中生成法线贴图/" rel="prev" title="从纹理中生成法线贴图">
-                从纹理中生成法线贴图 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -615,17 +530,8 @@ var jiathis_config={
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -724,22 +630,6 @@ var jiathis_config={
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要写这篇文章"><span class="nav-number">1.</span> <span class="nav-text">为什么要写这篇文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gamma-是什么"><span class="nav-number">2.</span> <span class="nav-text">Gamma 是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#物理亮度"><span class="nav-number">2.1.</span> <span class="nav-text">物理亮度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gamma-的由来"><span class="nav-number">2.2.</span> <span class="nav-text">Gamma 的由来</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提高暗部亮度值存储范围的原理"><span class="nav-number">2.3.</span> <span class="nav-text">提高暗部亮度值存储范围的原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#现代显示器还需要-Gamma-校正吗"><span class="nav-number">2.4.</span> <span class="nav-text">现代显示器还需要 Gamma 校正吗</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性空间和-sRGB-空间"><span class="nav-number">3.</span> <span class="nav-text">线性空间和 sRGB 空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性空间"><span class="nav-number">3.1.</span> <span class="nav-text">线性空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sRGB-空间"><span class="nav-number">3.2.</span> <span class="nav-text">sRGB 空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色空间的应用"><span class="nav-number">3.3.</span> <span class="nav-text">颜色空间的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色空间对游戏开发的影响"><span class="nav-number">3.4.</span> <span class="nav-text">颜色空间对游戏开发的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于纹理颜色空间的选择"><span class="nav-number">3.5.</span> <span class="nav-text">关于纹理颜色空间的选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -1413,26 +1303,6 @@ var jiathis_config={
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
