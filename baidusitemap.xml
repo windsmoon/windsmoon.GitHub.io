@@ -4,39 +4,19 @@
 
     
   <url>
-    <loc>http://windsmoon.com/2018/05/26/C#%20%E6%92%A4%E9%94%80%E4%B8%8E%E9%87%8D%E5%81%9A/</loc>
-    <lastmod>2018-12-09T16:03:59.791Z</lastmod>
-    <data>
-        <display>
-        <title>C# 撤销与重做</title>
-        <pubTime>2018-05-26T11:25:13.000Z</pubTime>
-        
-        <tag>Unity 编辑器扩展 游戏开发 Unity序列化</tag>
-         
-         
-           
-             
-              <breadCrumb title="Unity" url="http://windsmoon.com/categories/Unity/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://windsmoon.com/2018/12/06/C#%20%E5%AE%9E%E7%8E%B0%E6%92%A4%E9%94%80%E4%B8%8E%E9%87%8D%E5%81%9A/</loc>
-    <lastmod>2018-12-09T16:02:00.911Z</lastmod>
+    <loc>http://windsmoon.com/2018/12/10/C#%20%E5%AE%9E%E7%8E%B0%E6%92%A4%E9%94%80%E4%B8%8E%E9%87%8D%E5%81%9A/</loc>
+    <lastmod>2018-12-09T16:09:36.714Z</lastmod>
     <data>
         <display>
         <title>C# 实现撤销与重做</title>
-        <pubTime>2018-12-06T06:22:24.000Z</pubTime>
+        <pubTime>2018-12-10T11:25:13.000Z</pubTime>
         
-        <tag>编辑器 游戏开发 C# 撤销</tag>
+        <tag>编辑器 c# 撤销 Unity</tag>
          
          
            
              
-              <breadCrumb title="编辑器" url="http://windsmoon.com/categories/%E7%BC%96%E8%BE%91%E5%99%A8/"/>
+              <breadCrumb title="游戏开发工具" url="http://windsmoon.com/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
           
         </display>
     </data>
@@ -45,27 +25,7 @@
     
   <url>
     <loc>http://windsmoon.com/2018/05/26/Unity%20%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95%E8%B8%A9%E5%9D%91%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</loc>
-    <lastmod>2018-06-06T15:26:08.000Z</lastmod>
-    <data>
-        <display>
-        <title>Unity 编辑器扩展和序列化踩坑记（一）</title>
-        <pubTime>2018-05-26T11:25:13.000Z</pubTime>
-        
-        <tag>Unity 编辑器扩展 游戏开发 Unity序列化</tag>
-         
-         
-           
-             
-              <breadCrumb title="Unity" url="http://windsmoon.com/categories/Unity/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://windsmoon.com/2018/05/26/Unity%20%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95%E8%B8%A9%E5%9D%91%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E7%9A%84%E5%89%AF%E6%9C%AC/</loc>
-    <lastmod>2018-06-06T15:26:08.000Z</lastmod>
+    <lastmod>2018-12-09T16:07:13.308Z</lastmod>
     <data>
         <display>
         <title>Unity 编辑器扩展和序列化踩坑记（一）</title>
