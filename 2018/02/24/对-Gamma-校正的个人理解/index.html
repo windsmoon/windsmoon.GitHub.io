@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
+<meta name="description" content="由于该博客所使用的图床需要一个备过案的域名，所以博客中的图片都暂时失效。读者可以移步知乎专栏阅读： 知乎 关于图床问题我会尽快解决，谢谢支持。 本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。**">
 <meta name="keywords" content="Gamma Gamma校正 图形 游戏开发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="对 Gamma 校正的个人理解">
 <meta property="og:url" content="http://windsmoon.com/2018/02/24/对-Gamma-校正的个人理解/index.html">
 <meta property="og:site_name" content="windsmoon 的游戏相关">
-<meta property="og:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
+<meta property="og:description" content="由于该博客所使用的图床需要一个备过案的域名，所以博客中的图片都暂时失效。读者可以移步知乎专栏阅读： 知乎 关于图床问题我会尽快解决，谢谢支持。 本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。**">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oxm0iiq5n.bkt.clouddn.com/Gamma_Correction_curve.png">
-<meta property="og:updated_time" content="2018-05-08T03:06:34.000Z">
+<meta property="og:updated_time" content="2019-02-01T11:15:12.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对 Gamma 校正的个人理解">
-<meta name="twitter:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
+<meta name="twitter:description" content="由于该博客所使用的图床需要一个备过案的域名，所以博客中的图片都暂时失效。读者可以移步知乎专栏阅读： 知乎 关于图床问题我会尽快解决，谢谢支持。 本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。**">
 <meta name="twitter:image" content="http://oxm0iiq5n.bkt.clouddn.com/Gamma_Correction_curve.png">
 
 
@@ -411,7 +411,10 @@
       
 
       
-        <p><strong>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。</strong></p>
+        <p><strong>由于该博客所使用的图床需要一个备过案的域名，所以博客中的图片都暂时失效。读者可以移步知乎专栏阅读：</strong></p>
+<p><strong><a href="https://zhuanlan.zhihu.com/windsmoon" target="_blank" rel="external">知乎</a></strong></p>
+<p><strong>关于图床问题我会尽快解决，谢谢支持。</strong></p>
+<p>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。**</p>
 <a id="more"></a>
 <h2 id="为什么要写这篇文章"><a href="#为什么要写这篇文章" class="headerlink" title="为什么要写这篇文章"></a>为什么要写这篇文章</h2><p>Gamma 校正，看起来似乎是一件很简单的事情，做一次幂运算就可以了，但是如果深究的话，就会发现 Gamma 校正是个有点容易让人混乱的东西，每个人的解释可能都有一些不一样。最主要的是，Gamma 值在不止一个地方会用到，而这些地方应用的时候还或多或少有一些关联，所以深究 Gamma 校正的时候，非让容易令人感到困惑。我在读了一些资料，自己进行了一番理解之后，打算写一篇文章<strong>记录和分享</strong>一下自己的所得。</p>
 <h2 id="Gamma-是什么"><a href="#Gamma-是什么" class="headerlink" title="Gamma 是什么"></a>Gamma 是什么</h2><h3 id="物理亮度"><a href="#物理亮度" class="headerlink" title="物理亮度"></a>物理亮度</h3><p>物理亮度，就是真实世界中的亮度，可以认为是由光子数量来决定的，并且亮度与光子数量成线性关系，也就是说物理亮度存在于一个线性的空间中，物理亮度每提升 0.1，亮度的增加都是相同的。先说明这一点也是为了避免读者在后面的文字中对提到的物理亮度与其他东西感到混淆。</p>

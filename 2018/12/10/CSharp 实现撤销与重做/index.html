@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
+<meta name="description" content="由于该博客所使用的图床需要一个备过案的域名，所以博客中的图片都暂时失效。读者可以移步知乎专栏阅读： 知乎 关于图床问题我会尽快解决，谢谢支持。 本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。**">
 <meta name="keywords" content="编辑器 c# 撤销 Unity">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C# 实现撤销与重做">
 <meta property="og:url" content="http://windsmoon.com/2018/12/10/CSharp 实现撤销与重做/index.html">
 <meta property="og:site_name" content="windsmoon 的游戏相关">
-<meta property="og:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
+<meta property="og:description" content="由于该博客所使用的图床需要一个备过案的域名，所以博客中的图片都暂时失效。读者可以移步知乎专栏阅读： 知乎 关于图床问题我会尽快解决，谢谢支持。 本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。**">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-09T16:19:00.013Z">
+<meta property="og:updated_time" content="2019-02-01T11:13:41.777Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C# 实现撤销与重做">
-<meta name="twitter:description" content="本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。">
+<meta name="twitter:description" content="由于该博客所使用的图床需要一个备过案的域名，所以博客中的图片都暂时失效。读者可以移步知乎专栏阅读： 知乎 关于图床问题我会尽快解决，谢谢支持。 本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。**">
 
 
 
@@ -409,7 +409,10 @@
       
 
       
-        <p><strong>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。</strong></p>
+        <p><strong>由于该博客所使用的图床需要一个备过案的域名，所以博客中的图片都暂时失效。读者可以移步知乎专栏阅读：</strong></p>
+<p><strong><a href="https://zhuanlan.zhihu.com/windsmoon" target="_blank" rel="external">知乎</a></strong></p>
+<p><strong>关于图床问题我会尽快解决，谢谢支持。</strong></p>
+<p>本篇文章未经作者本人授权，禁止任何形式的转载，谢谢！如果在第三方阅读发现公式等格式有问题，请到原文地址阅读。**</p>
 <a id="more"></a>
 <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><p>编辑器开发以及一些特定类型的游戏开发过程中，经常会遇到撤销（Undo）和重做（Redo）的功能，即常见的 Crtl + Z 相关的功能。此功能看起来简单，但如果不进行一定的设计，会导致代码爆炸（每一个操作都要硬编码撤销和重做代码）。</p>
 <p>我在给项目做地图编辑器的时候，自然也需要实现撤销和重做的功能，在这篇文章中我会分享一下我的做法。先说一下，我的想法是基于《游戏编程模式》一书中【命令模式】这一章中所讲的内容，但是书中对撤销与重做的例子过于简单，只有单个命令的撤销和重做，在这篇文章中，<strong>我会完整实现一个撤销与重做的框架并用 Unity 实现一个编辑器例子。</strong></p>
